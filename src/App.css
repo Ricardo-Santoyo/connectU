@@ -1,9 +1,61 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #151515;
-  color: #9b6bff;
+  color: white;
 }
 
 .App {
   text-align: center;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}
+
+#Home {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+#Home h1 {
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+#homeSignup,
+#homeLogin {
+  width: 100%;
+  border: 1px solid #8553d6;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  height: 50px;
+  border-radius: 100px;
+  transition: all .1s ease-in;
+}
+
+#homeSignup {
+  color: white;
+  background-color: #8553d6;
+}
+
+#homeLogin {
+  color: #8553d6;
+  background-color: transparent;
+}
+
+#homeSignup:hover {
+  background-color: #7147b5;
+  border-color: #7147b5;
+}
+
+#homeLogin:hover {
+  background-color: #8553d60a;
 }
