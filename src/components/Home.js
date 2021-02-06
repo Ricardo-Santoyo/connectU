@@ -6,11 +6,11 @@ function Home() {
     <div id="Home">
       <h1>Welcome to ConnectU!</h1>
       <Link to="/signup">
-        <button id="homeSignup">Sign up</button>
+        <button className="colorButton">Sign up</button>
       </Link>
 
       <Link to="/login">
-      <button id="homeLogin">Log in</button>
+      <button className="transparentButton">Log in</button>
       </Link>
     </div>
   );

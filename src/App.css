@@ -8,12 +8,75 @@ body {
   text-align: center;
 }
 
-button {
-  cursor: pointer;
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  box-sizing: border-box;
+  border: 1px solid #2f3336;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  border-radius: 4px;
+  margin: 10px 15px;
+  padding: 0 5px;
+  height: 50px;
   outline: none;
 }
 
-#Home {
+input:focus {
+  border-color: #a672fb;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border-radius: 100px;
+  border: 1px solid #8553d6;
+  font-size: 15px;
+  font-weight: bold;
+  transition: all .1s ease-in;
+}
+
+.colorButton {
+  color: white;
+  background-color: #8553d6;
+}
+
+.colorButton:hover {
+  background-color: #7147b5;
+  border-color: #7147b5;
+}
+
+.transparentButton {
+  color: #8553d6;
+  background-color: transparent;
+}
+
+.transparentButton:hover {
+  background-color: #8553d60a;
+}
+
+a {
+  color: #a672fb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.invalidForm {
+  pointer-events: none;
+  color: #696969;
+  border-color: #352056;
+  background-color: #352056;
+}
+
+#Home,
+#Login {
   display: flex;
   flex-direction: column;
   max-width: 500px;
@@ -29,33 +92,28 @@ button {
   margin-bottom: 40px;
 }
 
-#homeSignup,
-#homeLogin {
+#Home button {
   width: 100%;
-  border: 1px solid #8553d6;
-  font-size: 15px;
-  font-weight: bold;
   margin-bottom: 15px;
   height: 50px;
-  border-radius: 100px;
-  transition: all .1s ease-in;
 }
 
-#homeSignup {
-  color: white;
-  background-color: #8553d6;
+#Login {
+  padding: 0;
+  max-width: 400px;
 }
 
-#homeLogin {
-  color: #8553d6;
-  background-color: transparent;
+#Login h1 {
+  margin-left: 15px;
 }
 
-#homeSignup:hover {
-  background-color: #7147b5;
-  border-color: #7147b5;
+#Login button {
+  height: 50px;
+  margin: 10px;
 }
 
-#homeLogin:hover {
-  background-color: #8553d60a;
+#Login a {
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 14px;
 }
