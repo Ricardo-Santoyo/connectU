@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function Welcome() {
   return (
-    <div id="Home">
+    <div id="Welcome">
       <h1>Welcome to ConnectU!</h1>
       <Link to="/signup">
         <button className="colorButton">Sign up</button>
@@ -16,4 +16,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Welcome;

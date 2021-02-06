@@ -75,8 +75,8 @@ a:hover {
   background-color: #352056;
 }
 
-#Home,
-#Login {
+#Welcome,
+.UserForm {
   display: flex;
   flex-direction: column;
   max-width: 500px;
@@ -86,33 +86,33 @@ a:hover {
   box-sizing: border-box;
 }
 
-#Home h1 {
+#Welcome h1 {
   font-size: 40px;
   margin-top: 10px;
   margin-bottom: 40px;
 }
 
-#Home button {
+#Welcome button {
   width: 100%;
   margin-bottom: 15px;
   height: 50px;
 }
 
-#Login {
+.UserForm {
   padding: 0;
   max-width: 400px;
 }
 
-#Login h1 {
+.UserForm h1 {
   margin-left: 15px;
 }
 
-#Login button {
+.UserForm button {
   height: 50px;
   margin: 10px;
 }
 
-#Login a {
+.UserForm a {
   margin: 0 auto;
   margin-top: 20px;
   font-size: 14px;

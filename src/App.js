@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
+import Welcome from './components/Welcome';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App() {
   const [token, setToken] = useState();
@@ -10,8 +11,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Welcome} />
         {!token ? <Route exact path="/login" render={(props) => <Login {...props} setToken={setToken}/>} /> : null}
+        <Route exact path="/signup" component={Signup} />
       </Switch>
     </BrowserRouter>
   );
