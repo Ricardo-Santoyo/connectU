@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import signupLoginApiCall from '../apiCalls/signupLoginApiCall';
+import handleErrors from '../apiCalls/handleErrors';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -17,7 +19,16 @@ function Login(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setRedirectHome(true);
+    let data = {user: {email: email, password: password}};
+    signupLoginApiCall('http://localhost:3001/api/login', data)
+    .then(handleErrors)
+    .then(response => {
+      const jwt = response.headers.get('Authorization');
+      localStorage.setItem("token", JSON.stringify(jwt));
+      props.setToken(localStorage.getItem('token'));
+      setRedirectHome(true);
+    })
+    .catch(error => console.log(error));
   };
 
   return (
