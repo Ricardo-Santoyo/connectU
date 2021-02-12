@@ -24,9 +24,9 @@ function Login(props) {
     .then(handleErrors)
     .then(response => {
       const jwt = response.headers.get('Authorization');
-      localStorage.setItem("token", JSON.stringify(jwt));
-      props.setToken(localStorage.getItem('token'));
+      localStorage.setItem("token", jwt.split(' ')[1]);
       setRedirectHome(true);
+      props.setToken(localStorage.getItem('token'));
     })
     .catch(error => console.log(error));
   };

@@ -117,3 +117,8 @@ a:hover {
   margin-top: 20px;
   font-size: 14px;
 }
+
+#LogOut {
+  height: 50px;
+  width: 200px;
+}
