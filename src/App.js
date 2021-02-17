@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 function App() {
   const [token, setToken] = useState();
   const [userID, setUserID] = useState();
+  const [postsData, setPostsData] = useState();
 
   useEffect(() => {
     const localToken = localStorage.getItem('token');
@@ -39,7 +40,7 @@ function App() {
         {!token ? <Route exact path="/login" render={(props) => <Login {...props} setToken={setToken}/>} />: null}
         {!token ? <Route exact path="/signup" render={(props) => <Signup {...props} setToken={setToken}/>} /> : null}
         <Route exact path="/home" >
-          {!token ? <Redirect to="/" /> : <Home token={token} setToken={setToken} userID={userID} setUserID={setUserID}/>}
+          {!token ? <Redirect to="/" /> : <Home token={token} setToken={setToken} userID={userID} setUserID={setUserID} postsData={postsData} setPostsData={setPostsData} />}
         </Route>
       </Switch>
     </BrowserRouter>
