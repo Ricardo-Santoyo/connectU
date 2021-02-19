@@ -15,6 +15,7 @@ function Home(props) {
       setRedirectToWelcome(true);
       props.setToken(null);
       props.setUserID(null);
+      props.setIsAuthenticated(false);
     })
     .catch(error => console.log(error));
   };

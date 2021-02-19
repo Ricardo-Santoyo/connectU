@@ -27,6 +27,8 @@ function Login(props) {
       localStorage.setItem("token", jwt.split(' ')[1]);
       setRedirectHome(true);
       props.setToken(localStorage.getItem('token'));
+      props.getUserID(localStorage.getItem('token'));
+      props.setIsAuthenticated(true);
     })
     .catch(error => console.log(error));
   };
