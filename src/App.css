@@ -2,6 +2,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #151515;
   color: white;
+  margin: 0;
 }
 
 .App {
@@ -124,6 +125,12 @@ a {
   max-width: 600px;
 }
 
+.header {
+  border: 1px solid #555;
+  padding: 10px;
+  margin: 0;
+}
+
 #PostsContainer {
   border-bottom: 1px solid #555;
   margin-bottom: 20px;
@@ -178,4 +185,53 @@ a {
 #LogOut {
   height: 50px;
   width: 200px;
+  max-width: 95%;
+}
+
+#NewPost {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #555;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+#NewPost textarea {
+  resize: none;
+  background-color: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: white;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-top: 16px;
+  border: 0px;
+  margin-bottom: 10px;
+  min-height: 50px;
+  width: 100%;
+  outline: none;
+}
+
+#NewPost form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#NewPost div {
+  align-self: flex-end;
+}
+
+#NewPost span {
+  color: #999;
+  vertical-align: middle;
+}
+
+#NewPost button {
+  margin-left: 10px;
+  padding: 10px 20px;
+}
+
+.redText {
+  color: #da1f1f !important;
 }
