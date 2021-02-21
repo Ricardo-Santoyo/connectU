@@ -15,6 +15,7 @@ function App() {
   const [token, setToken] = useState();
   const [userID, setUserID] = useState();
   const [postsData, setPostsData] = useState();
+  const [showMenu, setShowMenu] = useState(false);
 
   function getUserID(token) {
     const decode = jwt_decode(token);
@@ -43,7 +44,7 @@ function App() {
   return (
     <BrowserRouter>
     <div id={isAuthenticated ? 'Main' : null} >
-      {isAuthenticated ? <Navbar /> : null}
+      {isAuthenticated ? <Navbar showMenu={showMenu} setShowMenu={setShowMenu} /> : null}
       <Switch>
         <Route exact path="/">
           {isAuthenticated ? <Redirect to='/home' /> : <Welcome />}
@@ -60,6 +61,7 @@ function App() {
             setIsAuthenticated={setIsAuthenticated} 
             postsData={postsData} 
             setPostsData={setPostsData} 
+            setShowMenu={setShowMenu}
           />
         </PrivateRoute>
       </Switch>

@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import handleErrors from '../apiCalls/handleErrors';
 import PostsContainer from './PostsContainer';
 import NewPost from './NewPost';
+import { ReactComponent as MenuIcon } from '../icons/bars.svg';
 
 function Home(props) {
   const [redirectToWelcome, setRedirectToWelcome] = useState();
@@ -37,7 +38,11 @@ function Home(props) {
 
   return (
     <div id="Home">
-      <h1 className="header">Home</h1>
+      <div className="header">
+        <MenuIcon className="mobileMenu" onClick={() => props.setShowMenu(true)}/>
+        <h1>Home</h1>
+        <div id="Temp"></div>
+      </div>
       <NewPost token={props.token} userID={props.userID} postsData={props.postsData} setPostsData={props.setPostsData}/>
       <PostsContainer postsData={props.postsData} />
       <button id="LogOut" className="colorButton" onClick={logOut}>Log out</button>
