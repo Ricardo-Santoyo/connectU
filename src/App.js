@@ -44,7 +44,15 @@ function App() {
   return (
     <BrowserRouter>
     <div id={isAuthenticated ? 'Main' : null} >
-      {isAuthenticated ? <Navbar showMenu={showMenu} setShowMenu={setShowMenu} /> : null}
+      {isAuthenticated ? 
+        <Navbar 
+          showMenu={showMenu} 
+          setShowMenu={setShowMenu} 
+          setToken={setToken} 
+          setUserID={setUserID} 
+          setIsAuthenticated={setIsAuthenticated} 
+        /> 
+      : null}
       <Switch>
         <Route exact path="/">
           {isAuthenticated ? <Redirect to='/home' /> : <Welcome />}
@@ -58,7 +66,6 @@ function App() {
             setToken={setToken} 
             userID={userID} 
             setUserID={setUserID} 
-            setIsAuthenticated={setIsAuthenticated} 
             postsData={postsData} 
             setPostsData={setPostsData} 
             setShowMenu={setShowMenu}
