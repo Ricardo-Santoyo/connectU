@@ -166,7 +166,7 @@ a {
   margin-right: 10px;
 }
 
-#Home {
+.Container {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -292,6 +292,53 @@ a {
 #NewPost button {
   margin-left: 10px;
   padding: 10px 20px;
+}
+
+.BackArrow {
+  height: 100%;
+  width: 1em;
+  font-size: 20px;
+  color: #8553d6;
+  cursor: pointer;
+}
+
+.CenterTitle {
+  margin: 0 auto !important;
+}
+
+#ShowPost {
+  border: 1px solid #2f3336;
+  padding: 15px;
+}
+
+.PostUser {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ShowPostOptions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  font-size: 20px;
+  color: #6e767d;
+  padding-top: 15px;
+  border-top: 1px solid #2f3336;
+}
+
+.ShowPostOptions svg {
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+}
+
+#ShowPost h2 {
+  font-size: 20px;
+  margin: 0;
+}
+#ShowPost p {
+  margin: 0;
 }
 
 .redText {

@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import ShowPost from './components/ShowPost';
 import handleErrors from './apiCalls/handleErrors';
 import jwt_decode from "jwt-decode";
 
@@ -60,17 +61,25 @@ function App() {
         {!isAuthenticated ? <Route exact path="/login" render={(props) => <Login {...props} setToken={setToken} getUserID={getUserID} setIsAuthenticated={setIsAuthenticated}/>} />: null}
         {!isAuthenticated ? <Route exact path="/signup" render={(props) => <Signup {...props} setToken={setToken} getUserID={getUserID} setIsAuthenticated={setIsAuthenticated}/>} /> : null}
 
-        <PrivateRoute isAuthenticated={isAuthenticated}>
-          <Home 
-            token={token} 
-            setToken={setToken} 
-            userID={userID} 
-            setUserID={setUserID} 
-            postsData={postsData} 
-            setPostsData={setPostsData} 
-            setShowMenu={setShowMenu}
-          />
-        </PrivateRoute>
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          path="/home" 
+          component={Home} 
+          token={token} 
+          setToken={setToken} 
+          userID={userID} 
+          setUserID={setUserID} 
+          postsData={postsData} 
+          setPostsData={setPostsData} 
+          setShowMenu={setShowMenu}
+        />
+
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          path="/users/:userID/post/:postID" 
+          component={ShowPost}
+          postsData={postsData}
+        />
       </Switch>
       {isAuthenticated ? <div id='Temp' /> : null}
     </div>

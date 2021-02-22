@@ -22,7 +22,7 @@ function Home(props) {
   })
 
   return (
-    <div id="Home">
+    <div className="Container">
       <div className="header">
         <MenuIcon className="mobileMenu" onClick={() => props.setShowMenu(true)}/>
         <h1>Home</h1>

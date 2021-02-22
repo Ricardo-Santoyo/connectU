@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-function PrivateRoute({ children, isAuthenticated, ...rest }) {
+function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
   return (
-    <Route {...rest} render={() => isAuthenticated ? children : <Redirect to='/' />} />
+    <Route {...rest} render={(props) => isAuthenticated ? <Component {...rest} {...props} /> : <Redirect to='/' />} />
   );
 }
 

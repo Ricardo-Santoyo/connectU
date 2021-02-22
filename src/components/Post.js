@@ -12,7 +12,7 @@ function Post(props) {
         <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img>
       </Link>
       <div className="PostContent">
-        <Link to={`/users/${props.post.user_id}/post/${props.id}`}>
+        <Link to={`/users/${props.post.user_id}/post/${props.post.id}`}>
           <h2>{props.post.user_name}</h2>
           <p>{props.post.body}</p>
         </Link>
