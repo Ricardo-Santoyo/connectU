@@ -8,12 +8,17 @@ import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 function Post(props) {
   return (
     <div id="Post">
-      <Link to={`/users/${props.post.user_id}`}>
+      <Link to={`/${props.post.user_handle}`}>
         <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img>
       </Link>
       <div className="PostContent">
-        <Link to={`/users/${props.post.user_id}/post/${props.post.id}`}>
-          <h2>{props.post.user_name}</h2>
+        <Link to={`/${props.post.user_handle}`}>
+          <div id="PostUserName">
+            <h2>{props.post.user_name}</h2>
+            <span className="UserHandle">@{props.post.user_handle}</span>
+          </div>
+        </Link>
+        <Link to={`/${props.post.user_handle}/post/${props.post.id}`}>
           <p>{props.post.body}</p>
         </Link>
         <div className="PostOptions">

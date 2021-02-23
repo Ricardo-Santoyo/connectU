@@ -83,7 +83,7 @@ function App() {
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
-          path="/users/:userID/post/:postID" 
+          path="/:userHandle/post/:postID" 
           component={ShowPost}
           postsData={postsData}
         />

@@ -203,10 +203,6 @@ a {
   padding: 10px;
 }
 
-#Post :nth-child(1) {
-  align-self: flex-start;
-}
-
 .PostUserIcon {
   max-width: 50px;
   border-radius: 1000px;
@@ -220,8 +216,23 @@ a {
 #Post h2 {
   font-size: 20px;
   margin: 0;
-  margin-bottom: 5px;
 }
+
+#Post h2:hover {
+  text-decoration: underline;
+}
+
+#PostUserName {
+  display: flex;
+  align-items: center;
+}
+
+.UserHandle {
+  color: #6e767d;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
 #Post p {
   margin: 0;
 }
@@ -232,15 +243,16 @@ a {
   margin-top: 15px;
   max-width: 80%;
   color: #6e767d;
+  font-size: 16px;
 }
 
 .PostOptions svg {
-  max-width: 18px;
+  width: 1em;
   cursor: pointer;
 }
 
 .PostOptions :nth-child(2) {
-  max-width: 22px;
+  font-size: 20px;
 }
 
 #LogOut {
@@ -329,8 +341,11 @@ a {
 
 .ShowPostOptions svg {
   width: 1em;
-  height: 1em;
   cursor: pointer;
+}
+
+.ShowPostOptions :nth-child(2) {
+  font-size: 24px;
 }
 
 #ShowPost h2 {
