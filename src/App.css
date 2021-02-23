@@ -369,10 +369,22 @@ a {
 .ShowPostOptions svg {
   width: 1em;
   cursor: pointer;
+  transition: color 0.2s linear;
 }
 
-.ShowPostOptions :nth-child(2) {
-  font-size: 24px;
+.ShowPostStats {
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.ShowPostStats :nth-child(2) {
+  color: #6e767d;
+  margin-left: 5px;
+}
+
+.ShowPostStats:hover {
+  text-decoration-line: underline;
 }
 
 #ShowPost h2 {

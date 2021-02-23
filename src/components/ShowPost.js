@@ -17,23 +17,45 @@ function ShowPost(props) {
 
   return (
     <div className="Container">
+
       <div className="header">
         <ArrowIcon className="BackArrow" onClick={() => history.goBack()} />
         <h1 className="CenterTitle">Post</h1>
         <div id="Temp"></div>
       </div>
+
       <div id="ShowPost">
+
         <div className="PostUser">
-          <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img>
+          <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img> 
           <div>
             <h2>{post ? post.user_name : ''}</h2>
           </div>
         </div>
+
         <p>{post ? post.body : ''}</p>
+
         <div className="ShowPostOptions">
-            <CommentIcon />
-            <RetweetIcon />
-            <HeartIcon />
+          <div className="ShowPostStats">
+            <span>{post ? post.comment_count : null}</span>
+            <span>Comments</span>
+          </div>
+
+          <div className="ShowPostStats">
+            <span>0</span>
+            <span>Retweets</span>
+          </div>
+
+          <div className="ShowPostStats">
+            <span>{post ? post.like_count : null}</span>
+            <span>Likes</span>
+          </div>
+        </div>
+
+        <div className="ShowPostOptions">
+            <CommentIcon className="HoverBlue"/>
+            <RetweetIcon className="HoverGreen"/>
+            <HeartIcon className="HoverRed"/>
         </div>
       </div>
     </div>
