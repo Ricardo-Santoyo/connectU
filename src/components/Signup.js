@@ -25,7 +25,7 @@ function Signup(props) {
     .then(handleErrors)
     .then(response => {
       const jwt = response.headers.get('Authorization');
-      localStorage.setItem("token", JSON.stringify(jwt.split(' ')[1]));
+      localStorage.setItem("token", jwt.split(' ')[1]);
       setRedirectHome(true);
       props.setToken(localStorage.getItem('token'));
       props.getUserID(localStorage.getItem('token'));
