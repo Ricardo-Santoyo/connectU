@@ -225,6 +225,7 @@ a {
 #PostUserName {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .UserHandle {
@@ -251,8 +252,24 @@ a {
   cursor: pointer;
 }
 
-.PostOptions :nth-child(2) {
+.RetweetIcon {
   font-size: 20px;
+}
+
+.IconWithCount {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s linear;
+}
+
+.IconWithCount span {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.HoverBlue:hover {
+  color: #1da1f2;
 }
 
 #LogOut {

@@ -22,8 +22,11 @@ function Post(props) {
           <p>{props.post.body}</p>
         </Link>
         <div className="PostOptions">
-            <CommentIcon />
-            <RetweetIcon />
+            <div className="IconWithCount HoverBlue">
+              <CommentIcon />
+              <span>{props.post.comment_count}</span>
+            </div>
+            <RetweetIcon className="RetweetIcon"/>
             <HeartIcon />
         </div>
       </div>
