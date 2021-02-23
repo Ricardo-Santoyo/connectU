@@ -24,6 +24,13 @@ function App() {
     return decode.sub;
   }
 
+  function notAuthorized() {
+    localStorage.removeItem("token");
+    setToken(null);
+    setUserID(null);
+    setIsAuthenticated(false);
+  };
+
   useEffect(() => {
     const localToken = localStorage.getItem('token');
     setToken(localToken);
@@ -38,7 +45,7 @@ function App() {
       .then(handleErrors)    
       .then(response => response.json())
       .then(setIsAuthenticated(true))
-      .catch(error => console.log(error))
+      .catch(error => notAuthorized())
     }
   }, [])
 
