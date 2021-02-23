@@ -352,8 +352,17 @@ a {
 
 .PostUser {
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 15px;
+}
+
+.PostUser a {
+  display: flex;
+  align-items: center;
+}
+
+.PostUser span {
+  margin: 0;
 }
 
 .ShowPostOptions {

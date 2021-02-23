@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
@@ -23,21 +23,24 @@ function ShowPost(props) {
         <h1 className="CenterTitle">Post</h1>
         <div id="Temp"></div>
       </div>
-
+      {post ?
       <div id="ShowPost">
 
         <div className="PostUser">
-          <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img> 
-          <div>
-            <h2>{post ? post.user_name : ''}</h2>
-          </div>
+          <Link to={`/${post.user_handle}`}>
+            <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img> 
+            <div>
+              <h2>{post.user_name}</h2>
+              <span className="UserHandle">@{post.user_handle}</span>
+            </div>
+          </Link>
         </div>
 
         <p>{post ? post.body : ''}</p>
 
         <div className="ShowPostOptions">
           <div className="ShowPostStats">
-            <span>{post ? post.comment_count : null}</span>
+            <span>{post.comment_count}</span>
             <span>Comments</span>
           </div>
 
@@ -47,7 +50,7 @@ function ShowPost(props) {
           </div>
 
           <div className="ShowPostStats">
-            <span>{post ? post.like_count : null}</span>
+            <span>{post.like_count}</span>
             <span>Likes</span>
           </div>
         </div>
@@ -58,6 +61,7 @@ function ShowPost(props) {
             <HeartIcon className="HoverRed"/>
         </div>
       </div>
+      : null}
     </div>
   );
 }
