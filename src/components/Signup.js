@@ -42,7 +42,7 @@ function Signup(props) {
         <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} autoFocus={true} ></input>
         <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} ></input>
         <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} ></input>
-        <button className={invalidForm ? "invalidForm": "colorButton"} type="submit">Log in</button>
+        <button className={invalidForm ? "invalidForm": "colorButton"} type="submit">Sign up</button>
       </form>
 
       <Link to="/login">Log in to ConnectU</Link>
