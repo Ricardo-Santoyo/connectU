@@ -198,6 +198,7 @@ a {
 
 #Post {
   display: flex;
+  align-items: flex-start;
   border: 1px solid #2f3336;
   border-bottom: 0px;
   padding: 10px;
@@ -266,10 +267,19 @@ a {
 .IconWithCount span {
   font-size: 16px;
   margin-left: 10px;
+  height: 16px;
 }
 
 .HoverBlue:hover {
   color: #1da1f2;
+}
+
+.HoverGreen:hover {
+  color: #17bf63;
+}
+
+.HoverRed:hover {
+  color: #e0245e;
 }
 
 #LogOut {
