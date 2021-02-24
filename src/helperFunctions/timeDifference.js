@@ -9,17 +9,24 @@ function timeDifference(date, fullDate) {
   
   if (fullDate) {
     let hours = d.getHours();
-    hours = hours > 12 ? `${hours - 12}:${d.getMinutes()} PM` : `${hours}:${d.getMinutes()} AM`
-    return `${hours} · ${monthNames[d.getMonth()]} ${d.getDate()}, ${year}`
-  } else if (seconds < 60) {
+    let minutes = d.getMinutes();
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let time = hours > 12 ? `${hours - 12}:${minutes} PM` : `${hours}:${minutes} AM`;
+    return `${time} · ${monthNames[d.getMonth()]} ${d.getDate()}, ${year}`;
+  } 
+  else if (seconds < 60) {
     return `${Math.floor(seconds)}s`;
-  } else if (minutes < 60) {
+  } 
+  else if (minutes < 60) {
     return `${Math.floor(minutes)}m`;
-  } else if (hours < 24) {
+  } 
+  else if (hours < 24) {
     return `${Math.floor(hours)}h`;
-  } else if (year === new Date().getFullYear()) {
+  } 
+  else if (year === new Date().getFullYear()) {
     return `${monthNames[d.getMonth()]} ${d.getDate()}`
-  } else {
+  } 
+  else {
     return `${monthNames[d.getMonth()]} ${d.getDate()}, ${year}`
   };
 };

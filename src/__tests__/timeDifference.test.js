@@ -34,3 +34,13 @@ test('returns full date if specified(2)', () => {
   const date1 = 1576754270000
   expect(timeDifference(date1, true)).toBe('5:17 AM · Dec 19, 2019');
 });
+
+test('returns full date if specified(3)', () => {
+  const date1 = 1537542451000
+  expect(timeDifference(date1, true)).toBe('10:07 AM · Sept 21, 2018');
+});
+
+test('returns full date if specified(4)', () => {
+  const date1 = 1447804213000
+  expect(timeDifference(date1, true)).toBe('5:50 PM · Nov 17, 2015');
+});
