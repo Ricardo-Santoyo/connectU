@@ -4,8 +4,10 @@ import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
+import timeDifference from '../helperFunctions/timeDifference';
 
 function Post(props) {
+
   return (
     <div id="Post">
 
@@ -19,6 +21,8 @@ function Post(props) {
           <div id="PostUserName">
             <h2>{props.post.user_name}</h2>
             <span className="UserHandle">@{props.post.user_handle}</span>
+            <span className="spacer">·</span>
+            <span>{timeDifference(props.post.created_at)}</span>
           </div>
         </Link>
 

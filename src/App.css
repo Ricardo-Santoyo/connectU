@@ -229,6 +229,15 @@ a {
   flex-wrap: wrap;
 }
 
+#PostUserName span {
+  color: #6e767d;
+  font-size: 14px;
+}
+
+.spacer {
+  padding: 0 5px;
+}
+
 .UserHandle {
   color: #6e767d;
   font-size: 14px;
