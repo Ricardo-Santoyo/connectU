@@ -5,6 +5,7 @@ import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as ArrowIcon } from '../icons/arrow.svg';
+import timeDifference from '../helperFunctions/timeDifference';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
@@ -36,7 +37,9 @@ function ShowPost(props) {
           </Link>
         </div>
 
-        <p>{post ? post.body : ''}</p>
+        <p>{post.body}</p>
+
+        <span className="PostCreatedAt">{timeDifference(post.created_at, true)}</span>
 
         <div className="ShowPostOptions">
           <div className="ShowPostStats">

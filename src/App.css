@@ -374,6 +374,13 @@ a {
   margin: 0;
 }
 
+.PostCreatedAt {
+  color: #6e767d;
+  margin-top: 15px;
+  display: block;
+  font-size: 15px;
+}
+
 .ShowPostOptions {
   display: flex;
   justify-content: space-around;
@@ -409,7 +416,9 @@ a {
   font-size: 20px;
   margin: 0;
 }
+
 #ShowPost p {
+  font-size: 22px;
   margin: 0;
 }
 
