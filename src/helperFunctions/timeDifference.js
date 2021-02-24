@@ -1,4 +1,4 @@
-function timeDifference(date) {
+function timeDifference(date, fullDate) {
   const d = new Date(date);
   const milliseconds = new Date() - d;
   const seconds = milliseconds / 1000;
@@ -7,7 +7,11 @@ function timeDifference(date) {
   const year = d.getFullYear();
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
   
-  if (seconds < 60) {
+  if (fullDate) {
+    let hours = d.getHours();
+    hours = hours > 12 ? `${hours - 12}:${d.getMinutes()} PM` : `${hours}:${d.getMinutes()} AM`
+    return `${hours} · ${monthNames[d.getMonth()]} ${d.getDate()}, ${year}`
+  } else if (seconds < 60) {
     return `${Math.floor(seconds)}s`;
   } else if (minutes < 60) {
     return `${Math.floor(minutes)}m`;
