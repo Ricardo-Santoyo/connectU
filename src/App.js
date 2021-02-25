@@ -8,7 +8,8 @@ import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
-import handleErrors from './apiCalls/handleErrors';
+import ShowUser from './components/ShowUser';
+import getApiCall from './apiCalls/getApiCall';
 import jwt_decode from "jwt-decode";
 
 function App() {
@@ -36,14 +37,7 @@ function App() {
     setToken(localToken);
     if (localToken) {
       const ID = getUserID(localToken);
-      fetch(`http://localhost:3001/api/users/${ID}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${localToken}`
-        }
-      })
-      .then(handleErrors)    
-      .then(response => response.json())
+      getApiCall(`http://localhost:3001/api/users/${ID}`)
       .then(setIsAuthenticated(true))
       .catch(error => notAuthorized())
     }
@@ -73,7 +67,6 @@ function App() {
           path="/home" 
           component={Home} 
           token={token} 
-          setToken={setToken} 
           userID={userID} 
           setUserID={setUserID} 
           postsData={postsData} 
@@ -86,6 +79,12 @@ function App() {
           path="/:userHandle/post/:postID" 
           component={ShowPost}
           postsData={postsData}
+        />
+
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          path="/:userHandle" 
+          component={ShowUser}
         />
       </Switch>
       {isAuthenticated ? <div id='Temp' /> : null}

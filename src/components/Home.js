@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import handleErrors from '../apiCalls/handleErrors';
+import getApiCall from '../apiCalls/getApiCall';
 import PostsContainer from './PostsContainer';
 import NewPost from './NewPost';
 import { ReactComponent as MenuIcon } from '../icons/bars.svg';
@@ -8,16 +8,9 @@ function Home(props) {
 
   useEffect(() => {
     if (!props.postsData) {
-      fetch(`http://localhost:3001/api/users/${props.userID}/posts?include_followees=true`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${props.token}`
-        }
-      })
-      .then(handleErrors)    
-      .then(response => response.json())
+      getApiCall(`http://localhost:3001/api/users/${props.userID}/posts?include_followees=true`)
       .then(data => props.setPostsData(data.data))
-      .catch(error => console.log(error))
+      .catch(error => error)
     }
   })
 

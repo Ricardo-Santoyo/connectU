@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom'
+import Header from './Header';
+import { Link } from 'react-router-dom'
 import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
-import { ReactComponent as ArrowIcon } from '../icons/arrow.svg';
 import timeDifference from '../helperFunctions/timeDifference';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
-  const history = useHistory();
 
   useEffect(() => {
     const p = props.postsData.find((post) => post.id === Number(props.match.params.postID));
@@ -19,11 +18,7 @@ function ShowPost(props) {
   return (
     <div className="Container">
 
-      <div className="header">
-        <ArrowIcon className="BackArrow" onClick={() => history.goBack()} />
-        <h1 className="CenterTitle">Post</h1>
-        <div id="Temp"></div>
-      </div>
+      <Header title="Post" />
       {post ?
       <div id="ShowPost">
 
