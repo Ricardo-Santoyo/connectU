@@ -23,7 +23,7 @@ function ShowPost(props) {
       <div id="ShowPost">
 
         <div className="PostUser">
-          <Link to={`/${post.user_handle}`}>
+          <Link to={{pathname: `/${post.user_handle}`, userID: post.user_id}}>
             <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img> 
             <div>
               <h2>{post.user_name}</h2>

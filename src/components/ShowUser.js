@@ -8,10 +8,10 @@ function ShowUser(props) {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    getApiCall(`http://localhost:3001/api/users/9`)
+    getApiCall(`http://localhost:3001/api/users/${props.location.userID}`)
     .then(data => setUser(data.data))
     .catch(error => error);
-  }, []);
+  }, [props.location.userID]);
 
   return (
     <div className="Container">
