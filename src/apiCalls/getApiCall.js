@@ -1,5 +1,3 @@
-import handleErrors from './handleErrors';
-
 async function getApiCall(url) {
   const token = localStorage.getItem('token');
 
@@ -10,11 +8,10 @@ async function getApiCall(url) {
         Authorization: `Bearer ${token}`
       }
     });
-    await handleErrors(response);
     const data = response.json();
     return data;
   } catch (error) {
-    return console.log(error);
+    throw new Error(error);
   }
 };
 

@@ -10,7 +10,7 @@ function Home(props) {
     if (!props.postsData) {
       getApiCall(`http://localhost:3001/api/users/${props.userID}/posts?include_followees=true`)
       .then(data => props.setPostsData(data.data))
-      .catch(error => error)
+      .catch()
     }
   })
 

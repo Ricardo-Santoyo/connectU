@@ -26,6 +26,7 @@ function App() {
   }
 
   function notAuthorized() {
+    console.log('ok');
     localStorage.removeItem("token");
     setToken(null);
     setUserID(null);
@@ -39,7 +40,7 @@ function App() {
       const ID = getUserID(localToken);
       getApiCall(`http://localhost:3001/api/users/${ID}`)
       .then(setIsAuthenticated(true))
-      .catch(error => notAuthorized())
+      .catch(notAuthorized())
     }
   }, [])
 
