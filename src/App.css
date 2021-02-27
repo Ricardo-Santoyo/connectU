@@ -217,6 +217,7 @@ a {
 #Post h2 {
   font-size: 20px;
   margin: 0;
+  margin-right: 5px;
 }
 
 #Post h2:hover {
@@ -229,19 +230,18 @@ a {
   flex-wrap: wrap;
 }
 
-#PostUserName span {
-  color: #6e767d;
-  font-size: 14px;
-}
-
 .spacer {
   padding: 0 5px;
 }
 
-.UserHandle {
+#Post span {
   color: #6e767d;
   font-size: 14px;
-  margin-left: 5px;
+}
+
+.UserHandle {
+  color: #6e767d;
+  font-size: 15px;
 }
 
 #Post p {
@@ -370,10 +370,6 @@ a {
   align-items: center;
 }
 
-.PostUser span {
-  margin: 0;
-}
-
 .PostCreatedAt {
   color: #6e767d;
   margin-top: 15px;
@@ -420,6 +416,59 @@ a {
 #ShowPost p {
   font-size: 22px;
   margin: 0;
+}
+
+#ShowUser {
+  border: 1px solid #2f3336;
+}
+
+.banner {
+  background-color: #2f3336;
+  height: 33vw;
+  max-height: 200px;
+}
+
+.UserPhoto {
+  width: 23vw;
+  max-width: 140px;
+  box-sizing: border-box;
+  border: 4px solid #151515;
+  margin-top: max(-11.5vw, -70px);
+  margin-left: 15px;
+  border-radius: 1000px;
+}
+
+.UserInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  padding-top: 5px;
+}
+
+.UserInfo h2 {
+  margin: 0;
+}
+
+.UserInfo span {
+  margin-bottom: 12px;
+}
+
+.ShowUserNav {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.ShowUserNav a {
+  padding: 16px 0;
+  width: 100%;
+  text-align: center;
+  color: #6e767d;
+}
+
+.ShowUserNav a:hover {
+  background-color: #794bc405;
+  color: #8553d6;
 }
 
 .redText {
