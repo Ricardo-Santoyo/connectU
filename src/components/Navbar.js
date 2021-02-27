@@ -24,6 +24,7 @@ function Navbar(props) {
       props.setToken(null);
       props.setUserID(null);
       props.setIsAuthenticated(false);
+      props.setPostsData(null);
     })
     .catch(error => console.log(error));
   };

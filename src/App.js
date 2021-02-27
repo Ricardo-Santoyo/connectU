@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
+import AuthenticationRoute from './components/AuthenticationRoute';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -26,7 +27,6 @@ function App() {
   }
 
   function notAuthorized() {
-    console.log('ok');
     localStorage.removeItem("token");
     setToken(null);
     setUserID(null);
@@ -40,7 +40,7 @@ function App() {
       const ID = getUserID(localToken);
       getApiCall(`http://localhost:3001/api/users/${ID}`)
       .then(setIsAuthenticated(true))
-      .catch(notAuthorized())
+      .catch(error => notAuthorized())
     }
   }, [])
 
@@ -49,19 +49,34 @@ function App() {
     <div id={isAuthenticated ? 'Main' : null} >
       {isAuthenticated ? 
         <Navbar 
-          showMenu={showMenu} 
-          setShowMenu={setShowMenu} 
-          setToken={setToken} 
-          setUserID={setUserID} 
-          setIsAuthenticated={setIsAuthenticated} 
+          showMenu={showMenu}
+          setShowMenu={setShowMenu}
+          setToken={setToken}
+          setUserID={setUserID}
+          setPostsData={setPostsData}
+          setIsAuthenticated={setIsAuthenticated}
         /> 
       : null}
       <Switch>
-        <Route exact path="/">
-          {isAuthenticated ? <Redirect to='/home' /> : <Welcome />}
-        </Route>
-        {!isAuthenticated ? <Route exact path="/login" render={(props) => <Login {...props} setToken={setToken} getUserID={getUserID} setIsAuthenticated={setIsAuthenticated}/>} />: null}
-        {!isAuthenticated ? <Route exact path="/signup" render={(props) => <Signup {...props} setToken={setToken} getUserID={getUserID} setIsAuthenticated={setIsAuthenticated}/>} /> : null}
+        <AuthenticationRoute isAuthenticated={isAuthenticated} exact path="/" component={Welcome}/>
+
+        <AuthenticationRoute 
+          isAuthenticated={isAuthenticated} 
+          path="/login" 
+          component={Login}
+          setToken={setToken}
+          getUserID={getUserID}
+          setIsAuthenticated={setIsAuthenticated}
+        />
+
+        <AuthenticationRoute 
+          isAuthenticated={isAuthenticated} 
+          path="/signup" 
+          component={Signup}
+          setToken={setToken}
+          getUserID={getUserID}
+          setIsAuthenticated={setIsAuthenticated}
+        />
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
