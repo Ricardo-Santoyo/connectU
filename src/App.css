@@ -454,6 +454,11 @@ a {
   margin-bottom: 12px;
 }
 
+.FollowingFollowersCount {
+  font-size: 15px;
+  margin-right: 10px;
+}
+
 .ShowUserNav {
   display: flex;
   justify-content: space-around;

@@ -42,6 +42,14 @@ function ShowUser(props) {
             <h2>{user.attributes.name}</h2>
             <span className="UserHandle">@{user.attributes.handle}</span>
             <span className="UserHandle">Joined {JoinedDate()}</span>
+            <span>
+              <span className="FollowingFollowersCount">
+                {user.attributes.following_count} <span className="UserHandle">Following</span>
+              </span>
+              <span className="FollowingFollowersCount">
+                {user.attributes.followers_count} <span className="UserHandle">Followers</span>
+              </span>
+            </span>
           </div>
 
         </div>
