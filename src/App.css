@@ -420,6 +420,7 @@ a {
 
 #ShowUser {
   border: 1px solid #2f3336;
+  border-bottom: 0;
 }
 
 .banner {

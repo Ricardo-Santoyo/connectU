@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
+import PostsContainer from './PostsContainer';
 import defaultIcon from '../images/default-user-icon.jpg';
 import getApiCall from '../apiCalls/getApiCall';
 import timeDifference from '../helperFunctions/timeDifference';
@@ -8,10 +9,15 @@ import { Link } from 'react-router-dom';
 
 function ShowUser(props) {
   const [user, setUser] = useState();
+  const [userPosts, setUserPosts] = useState();
 
   useEffect(() => {
     getApiCall(`http://localhost:3001/api/users/${props.location.userID}`)
     .then(data => setUser(data.data))
+    .catch(error => error);
+
+    getApiCall(`http://localhost:3001/api/users/${props.location.userID}/posts`)
+    .then(data => setUserPosts(data.data))
     .catch(error => error);
   }, [props.location.userID]);
 
@@ -48,6 +54,8 @@ function ShowUser(props) {
         </div>
       </div>
       : null}
+
+      {userPosts ? <PostsContainer postsData={userPosts} /> : null}
     </div>
   );
 }
