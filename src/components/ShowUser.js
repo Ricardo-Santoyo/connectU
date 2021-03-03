@@ -12,14 +12,14 @@ function ShowUser(props) {
   const [userPosts, setUserPosts] = useState();
 
   useEffect(() => {
-    getApiCall(`http://localhost:3001/api/users/${props.location.userID}`)
+    getApiCall(`http://localhost:3001/api/users/${props.match.params.userHandle}`)
     .then(data => setUser(data.data))
     .catch(error => error);
 
-    getApiCall(`http://localhost:3001/api/users/${props.location.userID}/posts`)
+    getApiCall(`http://localhost:3001/api/users/${props.match.params.userHandle}/posts`)
     .then(data => setUserPosts(data.data))
     .catch(error => error);
-  }, [props.location.userID]);
+  }, [props.match.params.userHandle]);
 
   function JoinedDate() {
     let date = timeDifference(user.attributes.created_at, true);

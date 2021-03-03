@@ -11,13 +11,13 @@ function Post(props) {
   return (
     <div id="Post">
 
-      <Link to={{pathname: `/${props.post.user_handle}`, userID: props.post.user_id}}>
+      <Link to={`/${props.post.user_handle}`}>
         <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img>
       </Link>
 
       <div className="PostContent">
 
-        <Link to={{pathname: `/${props.post.user_handle}`, userID: props.post.user_id}}>
+        <Link to={`/${props.post.user_handle}`}>
           <div id="PostUserName">
             <h2>{props.post.user_name}</h2>
             <span className="UserHandle">@{props.post.user_handle}</span>
@@ -26,7 +26,7 @@ function Post(props) {
           </div>
         </Link>
 
-        <Link to={{pathname: `/${props.post.user_handle}/post/${props.post.id}`, userID: props.post.user_id}}>
+        <Link to={`/${props.post.user_handle}/post/${props.post.id}`}>
           <p>{props.post.body}</p>
         </Link>
 

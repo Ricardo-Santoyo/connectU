@@ -39,7 +39,7 @@ function App() {
     if (localToken) {
       const ID = getUserID(localToken);
       getApiCall(`http://localhost:3001/api/users/${ID}`)
-      .then(response => response.errors ? notAuthorized() : setIsAuthenticated(true))
+      .then(response => response.error ? notAuthorized() : setIsAuthenticated(true))
     }
   }, [])
 
