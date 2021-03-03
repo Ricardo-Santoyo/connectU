@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import getApiCall from '../apiCalls/getApiCall';
-import PostsContainer from './PostsContainer';
 import NewPost from './NewPost';
+import Loading from './Loading';
+import PostsContainer from './PostsContainer';
 import { ReactComponent as MenuIcon } from '../icons/bars.svg';
 
 function Home(props) {
@@ -22,7 +23,7 @@ function Home(props) {
         <div id="Temp"></div>
       </div>
       <NewPost token={props.token} userID={props.userID} postsData={props.postsData} setPostsData={props.setPostsData}/>
-      <PostsContainer postsData={props.postsData} />
+      {!props.postsData ? <Loading /> : <PostsContainer postsData={props.postsData} />}
     </div>
   );
 }

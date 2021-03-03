@@ -26,6 +26,25 @@ body {
   color: #8553d6;
 }
 
+#Loading {
+  display: flex;
+  justify-content: center;
+}
+
+#Loading div {
+  border: 3px solid #8553d652;
+  border-top: 3px solid #8553d6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 form {
   display: flex;
   flex-direction: column;
