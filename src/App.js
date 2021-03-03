@@ -61,7 +61,7 @@ function App() {
 
         <AuthenticationRoute 
           isAuthenticated={isAuthenticated} 
-          path="/login" 
+          exact path="/login" 
           component={Login}
           setToken={setToken}
           getUserID={getUserID}
@@ -70,7 +70,7 @@ function App() {
 
         <AuthenticationRoute 
           isAuthenticated={isAuthenticated} 
-          path="/signup" 
+          exact path="/signup" 
           component={Signup}
           setToken={setToken}
           getUserID={getUserID}
@@ -79,7 +79,7 @@ function App() {
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
-          path="/home" 
+          exact path="/home" 
           component={Home} 
           token={token} 
           userID={userID} 
@@ -91,16 +91,24 @@ function App() {
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
-          path="/:userHandle/post/:postID" 
+          exact path="/profile" 
+          component={ShowUser}
+          userID={userID}
+        />
+
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          exact path="/:userHandle/post/:postID" 
           component={ShowPost}
           postsData={postsData}
         />
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
-          path="/:userHandle" 
+          exact path="/:userHandle" 
           component={ShowUser}
         />
+
       </Switch>
       {isAuthenticated ? <div id='Temp' /> : null}
     </div>
