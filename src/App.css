@@ -466,7 +466,8 @@ a {
 }
 
 .ShowUserNav a {
-  padding: 16px 0;
+  padding: 16px 0 14px 0;
+  border-bottom: 2px solid #151515;
   width: 100%;
   text-align: center;
   color: #6e767d;
@@ -475,6 +476,11 @@ a {
 .ShowUserNav a:hover {
   background-color: #794bc405;
   color: #8553d6;
+}
+
+.activeUserNav {
+  color: #8553d6 !important;
+  border-color: #8553d6 !important;
 }
 
 .redText {

@@ -105,7 +105,7 @@ function App() {
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
-          exact path="/:userHandle" 
+          path="/:userHandle" 
           component={ShowUser}
         />
 

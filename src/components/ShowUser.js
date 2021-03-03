@@ -4,7 +4,7 @@ import PostsContainer from './PostsContainer';
 import defaultIcon from '../images/default-user-icon.jpg';
 import getApiCall from '../apiCalls/getApiCall';
 import timeDifference from '../helperFunctions/timeDifference';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 function ShowUser(props) {
@@ -56,10 +56,10 @@ function ShowUser(props) {
         </div>
 
         <div className="ShowUserNav">
-          <Link to={{pathname: `${user.attributes.handle}`, userID: user.id}} replace={true} >Posts</Link>
-          <Link to={{pathname: `${user.attributes.handle}/replies`, userID: user.id}} replace={true} >Replies</Link>
-          <Link to={{pathname: `${user.attributes.handle}/media`, userID: user.id}} replace={true} >Media</Link>
-          <Link to={{pathname: `${user.attributes.handle}/likes`, userID: user.id}} replace={true} >Likes</Link>
+          <NavLink activeClassName="activeUserNav" exact to={`/${user.attributes.handle}`} replace={true}>Posts</NavLink>
+          <NavLink activeClassName="activeUserNav" exact to={`/${user.attributes.handle}/replies`} replace={true}>Replies</NavLink>
+          <NavLink activeClassName="activeUserNav" exact to={`/${user.attributes.handle}/media`} replace={true}>Media</NavLink>
+          <NavLink activeClassName="activeUserNav" exact to={`/${user.attributes.handle}/likes`} replace={true}>Likes</NavLink>
         </div>
       </div>
       : null}
