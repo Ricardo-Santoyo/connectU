@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
 import ShowUser from './components/ShowUser';
-import getApiCall from './apiCalls/getApiCall';
+import apiCall from './apiCalls/apiCall';
 import jwt_decode from "jwt-decode";
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
     setToken(localToken);
     if (localToken) {
       const ID = getUserID(localToken);
-      getApiCall(`http://localhost:3001/api/users/${ID}`)
+      apiCall(`http://localhost:3001/api/users/${ID}`, 'GET')
       .then(response => response.error ? notAuthorized() : authorized())
     }
   }, [])

@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
+import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import timeDifference from '../helperFunctions/timeDifference';
 
 function Post(props) {
+  const [like, setLike] = useState(false);
+
+  function likeCall() {
+    setLike(true);
+  };
 
   return (
     <div id="Post">
@@ -39,10 +45,11 @@ function Post(props) {
 
             <div className="IconWithCount HoverGreen">
               <RetweetIcon className="RetweetIcon"/>
+              <span>0</span>
             </div>
 
-            <div className="IconWithCount HoverRed">
-              <HeartIcon />
+            <div className="IconWithCount HoverRed" onClick={() => likeCall()}>
+              {like ? <SolidHeartIcon className="Red" /> : <HeartIcon />}
               <span>{props.post.like_count}</span>
             </div>
         </div>

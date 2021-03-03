@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Header from './Header';
 import PostsContainer from './PostsContainer';
 import defaultIcon from '../images/default-user-icon.jpg';
-import getApiCall from '../apiCalls/getApiCall';
+import apiCall from '../apiCalls/apiCall';
 import timeDifference from '../helperFunctions/timeDifference';
 import Loading from './Loading';
 
@@ -14,11 +14,11 @@ function ShowUser(props) {
 
   useEffect(() => {
     const ID = props.userID ? props.userID : props.match.params.userHandle
-    getApiCall(`http://localhost:3001/api/users/${ID}`)
+    apiCall(`http://localhost:3001/api/users/${ID}`, 'GET')
     .then(data => setUser(data.data))
     .catch(error => error);
 
-    getApiCall(`http://localhost:3001/api/users/${ID}/posts`)
+    apiCall(`http://localhost:3001/api/users/${ID}/posts`, 'GET')
     .then(data => setUserPosts(data.data))
     .catch(error => error);
   }, [props.userID, props.match.params.userHandle]);

@@ -1,9 +1,9 @@
-async function getApiCall(url) {
+async function apiCall(url, method) {
   const token = localStorage.getItem('token');
 
   try {
     const response = await fetch(url, {
-      method: 'GET',
+      method: method,
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -15,4 +15,4 @@ async function getApiCall(url) {
   }
 };
 
-export default getApiCall;
+export default apiCall;
