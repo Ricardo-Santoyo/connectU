@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import AuthenticationRoute from './components/AuthenticationRoute';
+import LogoLoading from './components/LogoLoading';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -14,6 +15,7 @@ import getApiCall from './apiCalls/getApiCall';
 import jwt_decode from "jwt-decode";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState();
   const [userID, setUserID] = useState();
@@ -24,7 +26,7 @@ function App() {
     const decode = jwt_decode(token);
     setUserID(decode.sub);
     return decode.sub;
-  }
+  };
 
   function notAuthorized() {
     localStorage.removeItem("token");
@@ -33,18 +35,24 @@ function App() {
     setIsAuthenticated(false);
   };
 
+  function authorized() {
+    setIsAuthenticated(true);
+    setLoading(false);
+  };
+
   useEffect(() => {
     const localToken = localStorage.getItem('token');
     setToken(localToken);
     if (localToken) {
       const ID = getUserID(localToken);
       getApiCall(`http://localhost:3001/api/users/${ID}`)
-      .then(response => response.error ? notAuthorized() : setIsAuthenticated(true))
+      .then(response => response.error ? notAuthorized() : authorized())
     }
   }, [])
 
   return (
     <BrowserRouter>
+    {loading ? <LogoLoading /> : null}
     <div id={isAuthenticated ? 'Main' : null} >
       {isAuthenticated ? 
         <Navbar 

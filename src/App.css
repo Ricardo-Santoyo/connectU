@@ -9,6 +9,23 @@ body {
   text-align: center;
 }
 
+#LogoLoading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #151515;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#LogoLoading span {
+  font-size: 90px;
+  font-weight: bold;
+  color: #8553d6;
+}
+
 form {
   display: flex;
   flex-direction: column;
