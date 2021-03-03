@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import Header from './Header';
 import PostsContainer from './PostsContainer';
 import defaultIcon from '../images/default-user-icon.jpg';
 import getApiCall from '../apiCalls/getApiCall';
 import timeDifference from '../helperFunctions/timeDifference';
-import { NavLink } from 'react-router-dom';
+import Loading from './Loading';
 
 
 function ShowUser(props) {
@@ -62,7 +63,7 @@ function ShowUser(props) {
           <NavLink activeClassName="activeUserNav" exact to={`/${user.attributes.handle}/likes`} replace={true}>Likes</NavLink>
         </div>
       </div>
-      : null}
+      : <Loading />}
 
       {userPosts ? <PostsContainer postsData={userPosts} /> : null}
     </div>

@@ -29,6 +29,7 @@ body {
 #Loading {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 
 #Loading div {
@@ -229,6 +230,7 @@ a {
 
 #PostsContainer {
   border-bottom: 1px solid #2f3336;
+  margin-top: 15px;
   margin-bottom: 20px;
 }
 
@@ -339,7 +341,6 @@ a {
   align-items: flex-start;
   border: 1px solid #2f3336;
   padding: 10px;
-  margin-bottom: 15px;
 }
 
 #NewPost textarea {
@@ -457,6 +458,7 @@ a {
 #ShowUser {
   border: 1px solid #2f3336;
   border-bottom: 0;
+  margin-bottom: -15px;
 }
 
 .banner {
