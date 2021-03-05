@@ -33,6 +33,7 @@ function App() {
     setToken(null);
     setUserID(null);
     setIsAuthenticated(false);
+    setLoading(false);
   };
 
   function authorized() {
@@ -47,6 +48,8 @@ function App() {
       const ID = getUserID(localToken);
       apiCall(`http://localhost:3001/api/users/${ID}`, 'GET')
       .then(response => response.error ? notAuthorized() : authorized())
+    } else {
+      setLoading(false);
     }
   }, [])
 

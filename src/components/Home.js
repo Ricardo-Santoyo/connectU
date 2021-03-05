@@ -23,7 +23,7 @@ function Home(props) {
         <div id="Temp"></div>
       </div>
       <NewPost token={props.token} userID={props.userID} postsData={props.postsData} setPostsData={props.setPostsData}/>
-      {!props.postsData ? <Loading /> : <PostsContainer postsData={props.postsData} />}
+      {!props.postsData ? <Loading /> : <PostsContainer postsData={props.postsData} setPostsData={props.setPostsData}/>}
     </div>
   );
 }
