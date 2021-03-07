@@ -11,8 +11,13 @@ import apiCall from '../apiCalls/apiCall';
 function Post(props) {
 
   function likeCall() {
-    apiCall(`http://localhost:3001/api/likes?post_id=${props.post.id}`, 'POST')
-    .then(response => response.error ? null : props.updateLikeCount(props.id))
+    if (props.post.like_id) {
+      apiCall(`http://localhost:3001/api/likes/${props.post.like_id}`, 'DELETE')
+      .then(response => response.error ? null : props.updateLikeCount(props.id))
+    } else {
+      apiCall(`http://localhost:3001/api/likes?post_id=${props.post.id}`, 'POST')
+      .then(response => response.error ? null : props.updateLikeCount(props.id, response.data.id))
+    }
   };
 
   return (
@@ -50,7 +55,7 @@ function Post(props) {
             </div>
 
             <div className="IconWithCount HoverRed" onClick={() => likeCall()}>
-              {props.post.liked ? <SolidHeartIcon className="Red" /> : <HeartIcon />}
+              {props.post.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon />}
               <span>{props.post.like_count}</span>
             </div>
         </div>

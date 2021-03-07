@@ -3,14 +3,14 @@ import Post from './Post';
 
 function PostsContainer(props) {
 
-  function updateLikeCount(id) {
+  function updateLikeCount(post_id, id) {
     let newPostsData = [...props.postsData];
-    if (newPostsData[id].liked) {
-      newPostsData[id].like_count -= 1;
-      newPostsData[id].liked = false;
+    if (newPostsData[post_id].like_id) {
+      newPostsData[post_id].like_count -= 1;
+      newPostsData[post_id].like_id = null;
     } else {
-      newPostsData[id].like_count += 1;
-      newPostsData[id].liked = true;
+      newPostsData[post_id].like_count += 1;
+      newPostsData[post_id].like_id = id;
     }
     props.setPostsData(newPostsData);
   };
