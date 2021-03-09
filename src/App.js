@@ -118,6 +118,8 @@ function App() {
           isAuthenticated={isAuthenticated} 
           path="/:userHandle" 
           component={ShowUser}
+          postsData={postsData} 
+          setPostsData={setPostsData} 
         />
 
       </Switch>

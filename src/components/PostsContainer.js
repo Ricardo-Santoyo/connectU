@@ -3,8 +3,8 @@ import Post from './Post';
 
 function PostsContainer(props) {
 
-  function updateLikeCount(post_id, id) {
-    let newPostsData = [...props.postsData];
+  function updateLikeCount(post_id, id, stop) {
+    let newPostsData = stop ? [...props.pData] : [...props.postsData];
     if (newPostsData[post_id].like_id) {
       newPostsData[post_id].like_count -= 1;
       newPostsData[post_id].like_id = null;
@@ -12,7 +12,17 @@ function PostsContainer(props) {
       newPostsData[post_id].like_count += 1;
       newPostsData[post_id].like_id = id;
     }
-    props.setPostsData(newPostsData);
+
+    if (stop) {
+      props.setPData(newPostsData);
+    } else {
+      props.setPostsData(newPostsData);
+
+      let p = props.pData ? props.pData.findIndex((post) => post.id === newPostsData[post_id].id) : -1;
+      if (p !== -1) {
+        updateLikeCount(p, id, true);
+      }
+    }
   };
 
   return (

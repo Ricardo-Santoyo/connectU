@@ -65,7 +65,7 @@ function ShowUser(props) {
       </div>
       : <Loading />}
 
-      {userPosts ? <PostsContainer postsData={userPosts} /> : null}
+      {userPosts ? <PostsContainer postsData={userPosts} setPostsData={setUserPosts} pData={props.postsData} setPData={props.setPostsData}/> : null}
     </div>
   );
 }

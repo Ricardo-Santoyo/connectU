@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
@@ -9,14 +9,21 @@ import timeDifference from '../helperFunctions/timeDifference';
 import apiCall from '../apiCalls/apiCall';
 
 function Post(props) {
+  const [callingApi, setCallingApi] = useState(false);
 
   function likeCall() {
-    if (props.post.like_id) {
-      apiCall(`http://localhost:3001/api/likes/${props.post.like_id}`, 'DELETE')
-      .then(response => response.error ? null : props.updateLikeCount(props.id))
-    } else {
-      apiCall(`http://localhost:3001/api/likes?post_id=${props.post.id}`, 'POST')
-      .then(response => response.error ? null : props.updateLikeCount(props.id, response.data.id))
+    if (!callingApi) {
+      if (props.post.like_id) {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/likes/${props.post.like_id}`, 'DELETE')
+        .then(response => response.error ? null : props.updateLikeCount(props.id))
+        .then(() => setCallingApi(false))
+      } else {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/likes?post_id=${props.post.id}`, 'POST')
+        .then(response => response.error ? null : props.updateLikeCount(props.id, response.data.id))
+        .then(() => setCallingApi(false))
+      }
     }
   };
 
