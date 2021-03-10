@@ -5,6 +5,7 @@ import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
+import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import timeDifference from '../helperFunctions/timeDifference';
 
 function ShowPost(props) {
@@ -56,7 +57,7 @@ function ShowPost(props) {
         <div className="ShowPostOptions">
             <CommentIcon className="HoverBlue"/>
             <RetweetIcon className="HoverGreen"/>
-            <HeartIcon className="HoverRed"/>
+            {post.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
         </div>
       </div>
       : null}
