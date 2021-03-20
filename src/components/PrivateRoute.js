@@ -4,7 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
   useEffect(() => {
     if (!rest.redirectLocation) {
-      rest.setRedirectLocation(rest.path);
+      rest.setRedirectLocation(rest.location.pathname);
     }
   })
   return (

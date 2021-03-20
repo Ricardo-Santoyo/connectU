@@ -7,14 +7,21 @@ import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import timeDifference from '../helperFunctions/timeDifference';
+import apiCall from '../apiCalls/apiCall';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
 
   useEffect(() => {
-    const p = props.postsData.find((post) => post.id === Number(props.match.params.postID));
-    setPost(p);
-  }, [props.postsData, props.match.params.postID]);
+    if (props.postsData) {
+      const p = props.postsData.find((post) => post.id === Number(props.match.params.postID));
+      setPost(p);
+    } else {
+      apiCall(`http://localhost:3001/api/users/${props.match.params.userHandle}/posts/${props.match.params.postID}`, 'GET')
+      .then(data => setPost(data.data))
+      .catch(error => error);
+    }
+  }, [props.postsData, props.match.params.postID, props.match.params.userHandle]);
 
   return (
     <div className="Container">
