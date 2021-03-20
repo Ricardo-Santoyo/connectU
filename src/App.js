@@ -16,6 +16,7 @@ import jwt_decode from "jwt-decode";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [redirectLocation, setRedirectLocation] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState();
   const [userID, setUserID] = useState();
@@ -68,7 +69,7 @@ function App() {
         /> 
       : null}
       <Switch>
-        <AuthenticationRoute isAuthenticated={isAuthenticated} exact path="/" component={Welcome}/>
+        <AuthenticationRoute isAuthenticated={isAuthenticated} exact path="/" component={Welcome} redirectLocation={redirectLocation}/>
 
         <AuthenticationRoute 
           isAuthenticated={isAuthenticated} 
@@ -77,6 +78,7 @@ function App() {
           setToken={setToken}
           getUserID={getUserID}
           setIsAuthenticated={setIsAuthenticated}
+          redirectLocation={redirectLocation}
         />
 
         <AuthenticationRoute 
@@ -86,6 +88,7 @@ function App() {
           setToken={setToken}
           getUserID={getUserID}
           setIsAuthenticated={setIsAuthenticated}
+          redirectLocation={redirectLocation}
         />
 
         <PrivateRoute 
@@ -98,6 +101,8 @@ function App() {
           postsData={postsData} 
           setPostsData={setPostsData} 
           setShowMenu={setShowMenu}
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
         />
 
         <PrivateRoute 
@@ -105,6 +110,8 @@ function App() {
           exact path="/profile" 
           component={ShowUser}
           userID={userID}
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
         />
 
         <PrivateRoute 
@@ -112,6 +119,8 @@ function App() {
           exact path="/:userHandle/post/:postID" 
           component={ShowPost}
           postsData={postsData}
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
         />
 
         <PrivateRoute 
@@ -120,6 +129,8 @@ function App() {
           component={ShowUser}
           postsData={postsData} 
           setPostsData={setPostsData} 
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
         />
 
       </Switch>
