@@ -533,6 +533,34 @@ a {
   transform: translateX(0px) !important;
 }
 
+#Explore {
+  border: 1px solid #2f3336;
+}
+
+.SearchBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.SearchBar svg {
+  position: absolute;
+  pointer-events: none;
+  left: 30px;
+  width: 1em;
+  color: grey;
+}
+
+.SearchBar Input {
+  border-radius: 1000px;
+  padding: 12px;
+  width: 90%;
+  height: 40px;
+  background-color: #242729;
+  border: 0;
+  text-indent: 30px;
+}
+
 @media (max-width:750px) {
   #NavbarContainer {
     position: fixed;

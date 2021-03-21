@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
 import ShowUser from './components/ShowUser';
+import Explore from './components/Explore';
 import apiCall from './apiCalls/apiCall';
 import jwt_decode from "jwt-decode";
 
@@ -110,6 +111,14 @@ function App() {
           exact path="/profile" 
           component={ShowUser}
           userID={userID}
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
+        />
+
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          path="/explore" 
+          component={Explore}
           setRedirectLocation={setRedirectLocation}
           redirectLocation={redirectLocation}
         />
