@@ -561,6 +561,50 @@ a {
   text-indent: 30px;
 }
 
+#UsersContainer {
+  border: 1px solid #2f3336;
+  border-top: 0;
+}
+
+#User {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-bottom: 1px solid #2f3336;
+}
+
+#User:hover {
+  background-color: #ffffff08;
+}
+
+#User a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#User h2 {
+  margin: 0;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#User div {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#User button {
+  padding: 7px 20px;
+}
+
 @media (max-width:750px) {
   #NavbarContainer {
     position: fixed;
