@@ -30,7 +30,7 @@ function Explore() {
           <NavLink activeClassName="activeUserNav" exact to='/explore/trending' replace={true}>Trending</NavLink>
         </div>
       </div>
-      {!usersData ? <Loading /> : <UsersContainer usersData={usersData}/>}
+      {!usersData ? <Loading /> : <UsersContainer usersData={usersData} setUsersData={setUsersData}/>}
     </div>
   );
 }
