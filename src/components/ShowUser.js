@@ -11,6 +11,7 @@ import Loading from './Loading';
 function ShowUser(props) {
   const [user, setUser] = useState();
   const [userPosts, setUserPosts] = useState();
+  const [callingApi, setCallingApi] = useState(false);
 
   useEffect(() => {
     const ID = props.userID ? props.userID : props.match.params.userHandle
@@ -28,6 +29,32 @@ function ShowUser(props) {
     return date.split(' · ')[1];
   }
 
+  function follow() {
+    if (!callingApi) {
+      if (user.attributes.follower_followee_id) {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/following/${user.attributes.follower_followee_id}`, 'DELETE')
+        .then(response => response.error ? null : updateFollowingStatus())
+        .then(() => setCallingApi(false))
+      } else {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/following?person_id=${user.id}`, 'POST')
+        .then(response => response.error ? null : updateFollowingStatus(response.data.id))
+        .then(() => setCallingApi(false))
+      }
+    }
+  }
+
+  function updateFollowingStatus(id) {
+    let updatedUser = {...user};
+    if (updatedUser.attributes.follower_followee_id) {
+      updatedUser.attributes.follower_followee_id = null;
+    } else {
+      updatedUser.attributes.follower_followee_id = id;
+    }
+    setUser(updatedUser);
+  }
+
   return (
     <div className="Container">
 
@@ -38,7 +65,17 @@ function ShowUser(props) {
         <div className="Bio">
           <div className="banner"></div>
 
-          <img src={defaultIcon} alt="User Icon" className="UserPhoto"></img>
+          <div className="userIconWithButtons">
+            <img src={defaultIcon} alt="User Icon" className="UserPhoto"></img>
+            {props.currentUserID !== user.id ? 
+            <button 
+              className={user.attributes.follower_followee_id ? "colorButton" : "transparentButton"}
+              onClick={() => follow()}
+            >
+              {user.attributes.follower_followee_id ? "Following" : "Follow"}
+            </button> 
+            : null}
+          </div>
 
           <div className="UserInfo">
             <h2>{user.attributes.name}</h2>

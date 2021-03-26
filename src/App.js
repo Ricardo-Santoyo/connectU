@@ -138,6 +138,7 @@ function App() {
           component={ShowUser}
           postsData={postsData} 
           setPostsData={setPostsData} 
+          currentUserID={userID} 
           setRedirectLocation={setRedirectLocation}
           redirectLocation={redirectLocation}
         />

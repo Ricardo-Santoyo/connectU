@@ -471,6 +471,12 @@ a {
   max-height: 200px;
 }
 
+.userIconWithButtons {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 .UserPhoto {
   width: 23vw;
   max-width: 140px;
@@ -479,6 +485,12 @@ a {
   margin-top: max(-11.5vw, -70px);
   margin-left: 15px;
   border-radius: 1000px;
+}
+
+.userIconWithButtons button {
+  margin: 12px 16px;
+  margin-left: auto;
+  padding: 12px 25px;
 }
 
 .UserInfo {
