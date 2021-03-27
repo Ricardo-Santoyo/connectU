@@ -13,7 +13,10 @@ function ShowPost(props) {
   const [post, setPost] = useState();
 
   useEffect(() => {
-    if (props.postsData) {
+    if (props.location.post) {
+      const p = props.location.post;
+      setPost(p);
+    } else if (props.postsData) {
       const p = props.postsData.find((post) => post.id === Number(props.match.params.postID));
       setPost(p);
     } else {
@@ -21,7 +24,7 @@ function ShowPost(props) {
       .then(data => setPost(data.data))
       .catch(error => error);
     }
-  }, [props.postsData, props.match.params.postID, props.match.params.userHandle]);
+  }, [props.location.post, props.postsData, props.match.params.postID, props.match.params.userHandle]);
 
   return (
     <div className="Container">

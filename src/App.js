@@ -111,6 +111,7 @@ function App() {
           exact path="/profile" 
           component={ShowUser}
           userID={userID}
+          currentUserID={userID} 
           setRedirectLocation={setRedirectLocation}
           redirectLocation={redirectLocation}
         />

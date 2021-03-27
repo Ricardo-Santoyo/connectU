@@ -10,6 +10,10 @@ import apiCall from '../apiCalls/apiCall';
 
 function Post(props) {
   const [callingApi, setCallingApi] = useState(false);
+  const newTo = { 
+    pathname: `/${props.post.user_handle}/post/${props.post.id}`, 
+    post: props.post
+  };
 
   function likeCall() {
     if (!callingApi) {
@@ -45,7 +49,7 @@ function Post(props) {
           </div>
         </Link>
 
-        <Link to={`/${props.post.user_handle}/post/${props.post.id}`}>
+        <Link to={newTo}>
           <p>{props.post.body}</p>
         </Link>
 
