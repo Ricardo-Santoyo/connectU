@@ -262,7 +262,7 @@ a {
   text-decoration: underline;
 }
 
-#PostUserName {
+#CreatorLink {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -286,7 +286,7 @@ a {
   margin: 0;
 }
 
-.PostOptions {
+.InteractionOptions {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
@@ -295,7 +295,7 @@ a {
   font-size: 16px;
 }
 
-.PostOptions svg {
+.InteractionOptions svg {
   width: 1em;
   cursor: pointer;
 }

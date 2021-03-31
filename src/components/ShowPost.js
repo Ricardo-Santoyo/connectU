@@ -8,9 +8,11 @@ import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import timeDifference from '../helperFunctions/timeDifference';
 import apiCall from '../apiCalls/apiCall';
+import CommentsContainer from './CommentsContainer';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
+  const [comments, setComments] = useState();
 
   useEffect(() => {
     if (props.location.post) {
@@ -24,6 +26,10 @@ function ShowPost(props) {
       .then(data => setPost(data.data))
       .catch(error => error);
     }
+
+    apiCall(`http://localhost:3001/api/comments?post_id=${props.match.params.postID}`, 'GET')
+    .then(data => setComments(data.data))
+    .catch(error => error);
   }, [props.location.post, props.postsData, props.match.params.postID, props.match.params.userHandle]);
 
   return (
@@ -71,6 +77,8 @@ function ShowPost(props) {
         </div>
       </div>
       : null}
+
+      {comments ? <CommentsContainer commentsData={comments} /> : null}
     </div>
   );
 }
