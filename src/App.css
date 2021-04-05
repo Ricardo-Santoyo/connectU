@@ -617,6 +617,11 @@ a {
   padding: 7px 20px;
 }
 
+#NewComment {
+  position: absolute;
+  background-color: black;
+}
+
 @media (max-width:750px) {
   #NavbarContainer {
     position: fixed;

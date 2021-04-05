@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
+import NewComment from './NewComment';
 
 function InteractionOptions(props) {
+  const [displayNewComment, setDisplayNewComment] = useState(false);
 
   return (
     <div className="InteractionOptions">
-      <div className="IconWithCount HoverBlue">
+      <div className="IconWithCount HoverBlue" onClick={() => setDisplayNewComment(true)}>
         <CommentIcon />
         <span>{props.data.comment_count}</span>
       </div>
@@ -22,6 +24,8 @@ function InteractionOptions(props) {
         {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon />}
         <span>{props.data.like_count}</span>
       </div>
+
+      {displayNewComment ? <NewComment setDisplayNewComment={setDisplayNewComment} /> : null}
     </div>
   );
 }
