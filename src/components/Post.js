@@ -21,7 +21,7 @@ function Post(props) {
         .then(() => setCallingApi(false))
       } else {
         setCallingApi(true);
-        apiCall(`http://localhost:3001/api/likes?post_id=${props.post.id}`, 'POST')
+        apiCall(`http://localhost:3001/api/likes?type=post&likeable_id=${props.post.id}`, 'POST')
         .then(response => response.error ? null : props.updateLikeCount(props.id, response.data.id))
         .then(() => setCallingApi(false))
       }
