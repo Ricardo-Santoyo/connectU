@@ -365,8 +365,6 @@ a {
 
 #NewPost form {
   flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 #NewPost div {
