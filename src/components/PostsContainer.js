@@ -25,10 +25,27 @@ function PostsContainer(props) {
     }
   };
 
+  function updateCommentCount(post_id, stop) {
+    let newPostsData = stop ? [...props.pData] : [...props.postsData];
+    newPostsData[post_id].comment_count += 1;
+    newPostsData[post_id].commented = true;
+
+    if (stop) {
+      props.setPData(newPostsData);
+    } else {
+      props.setPostsData(newPostsData);
+
+      let p = props.pData ? props.pData.findIndex((post) => post.id === newPostsData[post_id].id) : -1;
+      if (p !== -1) {
+        updateCommentCount(p, true);
+      }
+    }
+  };
+
   return (
     <div id="PostsContainer">
       {props.postsData ? props.postsData.map((post, id) => (
-        <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount}/>
+        <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );

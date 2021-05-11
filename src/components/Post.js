@@ -28,6 +28,10 @@ function Post(props) {
     }
   };
 
+  function updateCommentInfo() {
+    props.updateCommentCount(props.id);
+  };
+
   return (
     <div id="Post">
 
@@ -42,7 +46,7 @@ function Post(props) {
           <p>{props.post.body}</p>
         </Link>
 
-        <InteractionOptions data={props.post} likeCall={likeCall}/>
+        <InteractionOptions data={props.post} likeCall={likeCall} updateCommentInfo={updateCommentInfo}/>
       </div>
     </div>
   );

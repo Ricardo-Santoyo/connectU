@@ -333,6 +333,14 @@ a {
   color: #e0245e;
 }
 
+.Blue {
+  color: #1da1f2;
+}
+
+.Green {
+  color: #17bf63;
+}
+
 #LogOut {
   margin-top: 50px;
   height: 50px;
@@ -347,7 +355,7 @@ a {
   padding: 10px;
 }
 
-#NewPost textarea {
+#PostForm textarea {
   resize: none;
   background-color: transparent;
   font-family: Arial, Helvetica, sans-serif;
@@ -367,16 +375,16 @@ a {
   flex: 1;
 }
 
-#NewPost div {
+#PostForm div {
   align-self: flex-end;
 }
 
-#NewPost span {
+#PostForm span {
   color: #999;
   vertical-align: middle;
 }
 
-#NewPost button {
+#PostForm button {
   margin-left: 10px;
   padding: 10px 20px;
 }
@@ -615,9 +623,49 @@ a {
   padding: 7px 20px;
 }
 
+#NewCommentContainer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgb(0 0 0 / 52%);
+}
+
 #NewComment {
-  position: absolute;
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  max-height: 400px;
+  background-color: #151515;
+  border-radius: 10px;
+}
+
+#NewComment p {
+  margin: 0;
+  padding-bottom: 16px;
+  font-size: 22px;
+  color: #8553d6;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+#NewComment #PostForm {
+  border-top: 1px #2f3336 solid;
+  justify-content: space-between;
+  flex: 1;
+}
+
+#NewComment #PostForm textarea {
+  flex: 1;
 }
 
 @media (max-width:750px) {

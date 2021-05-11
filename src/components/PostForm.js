@@ -18,11 +18,12 @@ function PostForm(props) {
   }, [value, charCount]);
 
   return (
-    <form onSubmit={(e) => props.handleSubmit(value, e)}>
+    <form id="PostForm" onSubmit={(e) => props.handleSubmit(value, e)}>
       <textarea
         ref={textareaRef}
         onChange={(e) => {setCharCount(300 - e.target.value.length); setValue(e.target.value)}}
         placeholder={props.placeholder}
+        autoFocus={props.autofocus}
       />
       <div>
         <span className={charCount <= 20 ? "redText" : null}>{charCount}</span>
