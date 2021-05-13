@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import defaultIcon from '../images/default-user-icon.jpg';
 //import apiCall from '../apiCalls/apiCall';
 import CreatorLink from './CreatorLink';
+import CreatorIcon from './CreatorIcon';
 import InteractionOptions from './InteractionOptions';
 
 function Comment(props) {
@@ -14,9 +14,7 @@ function Comment(props) {
   return (
     <div id="Post">
 
-      <Link to={`/${props.comment.user_handle}`}>
-        <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img>
-      </Link>
+      <CreatorIcon data={props.comment} />
 
       <div className="PostContent">
         <CreatorLink data={props.comment}/>
