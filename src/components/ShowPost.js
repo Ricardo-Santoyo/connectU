@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom'
-import defaultIcon from '../images/default-user-icon.jpg';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import timeDifference from '../helperFunctions/timeDifference';
 import apiCall from '../apiCalls/apiCall';
+import CreatorInfo from './CreatorInfo';
 import CommentsContainer from './CommentsContainer';
 
 function ShowPost(props) {
@@ -39,15 +38,7 @@ function ShowPost(props) {
       {post ?
       <div id="ShowPost">
 
-        <div className="PostUser">
-          <Link to={`/${post.user_handle}`}>
-            <img src={defaultIcon} alt='User Icon' className="PostUserIcon"></img> 
-            <div>
-              <h2>{post.user_name}</h2>
-              <span className="UserHandle">@{post.user_handle}</span>
-            </div>
-          </Link>
-        </div>
+        <CreatorInfo data={post} />
 
         <p>{post.body}</p>
 
