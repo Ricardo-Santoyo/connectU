@@ -78,7 +78,7 @@ function ShowPost(props) {
       </div>
       : null}
 
-      {comments ? <CommentsContainer commentsData={comments} /> : null}
+      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : null}
     </div>
   );
 }
