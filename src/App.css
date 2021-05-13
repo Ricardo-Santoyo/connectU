@@ -403,6 +403,7 @@ a {
 
 #ShowPost {
   border: 1px solid #2f3336;
+  border-bottom: none;
   padding: 15px;
 }
 
@@ -666,6 +667,10 @@ a {
 
 #NewComment #PostForm textarea {
   flex: 1;
+}
+
+#CommentsContainer {
+  border-bottom: 1px solid #2f3336;
 }
 
 @media (max-width:750px) {
