@@ -21,12 +21,8 @@ function Post(props) {
     }
   };
 
-  function updateCommentInfo() {
-    props.updateCommentCount(props.id);
-  };
-
   return (
-    <PostInfo data={props.post} type="post" likeCall={likeCall} updateCommentInfo={updateCommentInfo} />
+    <PostInfo data={props.post} type="post" likeCall={likeCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}} />
   );
 }
 
