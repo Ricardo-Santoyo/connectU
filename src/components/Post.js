@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import CreatorIcon from './CreatorIcon';
 import apiCall from '../apiCalls/apiCall';
 import CreatorLink from './CreatorLink';
+import ShowMoreLink from './ShowMoreLink';
 import InteractionOptions from './InteractionOptions';
 
 function Post(props) {
   const [callingApi, setCallingApi] = useState(false);
-  const newTo = { 
-    pathname: `/${props.post.user_handle}/post/${props.post.id}`, 
-    post: props.post
-  };
 
   function likeCall() {
     if (!callingApi) {
@@ -39,11 +35,7 @@ function Post(props) {
 
       <div className="PostContent">
         <CreatorLink data={props.post}/>
-
-        <Link to={newTo}>
-          <p>{props.post.body}</p>
-        </Link>
-
+        <ShowMoreLink data={props.post} type="post" />
         <InteractionOptions data={props.post} likeCall={likeCall} updateCommentInfo={updateCommentInfo}/>
       </div>
     </div>
