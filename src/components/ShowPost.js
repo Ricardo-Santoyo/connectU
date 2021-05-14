@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import { ReactComponent as CommentIcon } from '../icons/comment.svg';
-import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
-import { ReactComponent as HeartIcon } from '../icons/heart.svg';
-import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import timeDifference from '../helperFunctions/timeDifference';
 import apiCall from '../apiCalls/apiCall';
 import CreatorInfo from './CreatorInfo';
+import PostOptions from './PostOptions';
 import CommentsContainer from './CommentsContainer';
 
 function ShowPost(props) {
@@ -37,35 +34,10 @@ function ShowPost(props) {
       <Header title="Post" />
       {post ?
       <div id="ShowPost">
-
         <CreatorInfo data={post} />
-
         <p>{post.body}</p>
-
         <span className="PostCreatedAt">{timeDifference(post.created_at, true)}</span>
-
-        <div className="ShowPostOptions">
-          <div className="ShowPostStats">
-            <span>{post.comment_count}</span>
-            <span>Comments</span>
-          </div>
-
-          <div className="ShowPostStats">
-            <span>0</span>
-            <span>Retweets</span>
-          </div>
-
-          <div className="ShowPostStats">
-            <span>{post.like_count}</span>
-            <span>Likes</span>
-          </div>
-        </div>
-
-        <div className="ShowPostOptions">
-            <CommentIcon className="HoverBlue"/>
-            <RetweetIcon className="HoverGreen"/>
-            {post.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
-        </div>
+        <PostOptions data={post} />
       </div>
       : null}
 
