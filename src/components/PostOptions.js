@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as CommentIcon } from '../icons/comment.svg';
+import { ReactComponent as SolidCommentIcon } from '../icons/comment-solid.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
@@ -26,7 +27,7 @@ function PostOptions(props) {
       </div>
 
       <div className="ShowPostOptions">
-        <CommentIcon className="HoverBlue"/>
+        {props.data.commented ? <SolidCommentIcon className="Blue" /> : <CommentIcon className="HoverBlue"/>}
         <RetweetIcon className="HoverGreen"/>
         {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
       </div>  
