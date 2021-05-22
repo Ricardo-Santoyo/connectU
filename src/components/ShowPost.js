@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import timeDifference from '../helperFunctions/timeDifference';
 import apiCall from '../apiCalls/apiCall';
-import CreatorInfo from './CreatorInfo';
-import PostOptions from './PostOptions';
 import CommentsContainer from './CommentsContainer';
+import DetailedPostInfo from './DetailedPostInfo';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
@@ -30,17 +28,8 @@ function ShowPost(props) {
 
   return (
     <div className="Container">
-
       <Header title="Post" />
-      {post ?
-      <div id="ShowPost">
-        <CreatorInfo data={post} />
-        <p>{post.body}</p>
-        <span className="PostCreatedAt">{timeDifference(post.created_at, true)}</span>
-        <PostOptions data={post} />
-      </div>
-      : null}
-
+      {post ? <DetailedPostInfo data={post} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : null}
     </div>
   );
