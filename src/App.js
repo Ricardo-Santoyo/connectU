@@ -10,6 +10,7 @@ import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
+import ShowComment from './components/ShowComment';
 import ShowUser from './components/ShowUser';
 import Explore from './components/Explore';
 import apiCall from './apiCalls/apiCall';
@@ -129,6 +130,14 @@ function App() {
           exact path="/:userHandle/post/:postID" 
           component={ShowPost}
           postsData={postsData}
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
+        />
+
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          exact path="/:userHandle/comment/:commentID" 
+          component={ShowComment}
           setRedirectLocation={setRedirectLocation}
           redirectLocation={redirectLocation}
         />
