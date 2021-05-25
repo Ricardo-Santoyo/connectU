@@ -3,6 +3,7 @@ import Header from './Header';
 import apiCall from '../apiCalls/apiCall';
 import CommentsContainer from './CommentsContainer';
 import DetailedPostInfo from './DetailedPostInfo';
+import Loading from "./Loading";
 
 function ShowPost(props) {
   const [post, setPost] = useState();
@@ -30,7 +31,7 @@ function ShowPost(props) {
     <div className="Container">
       <Header title="Post" />
       {post ? <DetailedPostInfo data={post} /> : null}
-      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : null}
+      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : <Loading />}
     </div>
   );
 }
