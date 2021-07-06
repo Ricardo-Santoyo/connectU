@@ -18,7 +18,7 @@ function ShowComment(props) {
       .catch(error => error);
     }
 
-    apiCall(`http://localhost:3001/api/comments?post_id=${props.match.params.commentID}`, 'GET')
+    apiCall(`http://localhost:3001/api/comments?comment_id=${props.match.params.commentID}`, 'GET')
     .then(data => setComments(data.data))
     .catch(error => error);
   }, [props.location.post, props.match.params.commentID]);
