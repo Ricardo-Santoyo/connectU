@@ -22,7 +22,7 @@ function Comment(props) {
   };
 
   return (
-    <PostInfo data={props.comment} type="comment" likeCall={likeCall}/>
+    <PostInfo data={props.comment} type="comment" likeCall={likeCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}}/>
   );
 }
 

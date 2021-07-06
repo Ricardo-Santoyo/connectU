@@ -16,10 +16,17 @@ function CommentsContainer(props) {
     props.setCommentsData(newCommentsData);
   };
 
+  function updateCommentCount(comment_id) {
+    let newCommentsData = [...props.commentsData];
+    newCommentsData[comment_id].comment_count += 1;
+    newCommentsData[comment_id].commented = true;
+    props.setCommentsData(newCommentsData);
+  };
+
   return (
     <div id="CommentsContainer">
       {props.commentsData ? props.commentsData.map((comment, id) => (
-        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} />
+        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );
