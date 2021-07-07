@@ -7,6 +7,7 @@ import DetailedPostInfo from './DetailedPostInfo';
 function ShowComment(props) {
   const [comment, setComment] = useState();
   const [comments, setComments] = useState();
+  const [callingApi, setCallingApi] = useState(false);
 
   useEffect(() => {
     if (props.location.post) {
@@ -24,7 +25,31 @@ function ShowComment(props) {
   }, [props.location.post, props.match.params.commentID]);
 
   function likeCall() {
-    console.log("ok");
+    if (!callingApi) {
+      if (comment.like_id) {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/likes/${comment.like_id}`, 'DELETE')
+        .then(response => response.error ? null : updateLikeCount())
+        .then(() => setCallingApi(false))
+      } else {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/likes?type=comment&likeable_id=${comment.id}`, 'POST')
+        .then(response => response.error ? null : updateLikeCount(response.data.id))
+        .then(() => setCallingApi(false))
+      }
+    }
+  };
+
+  function updateLikeCount(id) {
+    let newCommentData = {...comment};
+    if (newCommentData.like_id) {
+      newCommentData.like_count -= 1;
+      newCommentData.like_id = null;
+    } else {
+      newCommentData.like_count += 1;
+      newCommentData.like_id = id;
+    }
+    setComment(newCommentData);
   };
 
   return (
