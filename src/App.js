@@ -130,6 +130,7 @@ function App() {
           exact path="/:userHandle/post/:postID" 
           component={ShowPost}
           postsData={postsData}
+          setPostsData={setPostsData}
           setRedirectLocation={setRedirectLocation}
           redirectLocation={redirectLocation}
         />

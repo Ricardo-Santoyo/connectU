@@ -8,6 +8,7 @@ import Loading from "./Loading";
 function ShowPost(props) {
   const [post, setPost] = useState();
   const [comments, setComments] = useState();
+  const [callingApi, setCallingApi] = useState(false);
 
   useEffect(() => {
     if (props.location.post) {
@@ -27,10 +28,51 @@ function ShowPost(props) {
     .catch(error => error);
   }, [props.location.post, props.postsData, props.match.params.postID, props.match.params.userHandle]);
 
+  function likeCall() {
+    if (!callingApi) {
+      if (post.like_id) {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/likes/${post.like_id}`, 'DELETE')
+        .then(response => response.error ? null : updateLikeCount())
+        .then(() => setCallingApi(false))
+      } else {
+        setCallingApi(true);
+        apiCall(`http://localhost:3001/api/likes?type=post&likeable_id=${post.id}`, 'POST')
+        .then(response => response.error ? null : updateLikeCount(response.data.id))
+        .then(() => setCallingApi(false))
+      }
+    }
+  };
+
+  function updateLikeCount(id) {
+    let newPostData = {...post};
+    if (newPostData.like_id) {
+      newPostData.like_count -= 1;
+      newPostData.like_id = null;
+    } else {
+      newPostData.like_count += 1;
+      newPostData.like_id = id;
+    }
+    setPost(newPostData);
+
+    let p = props.postsData ? props.postsData.findIndex((p) => p.id === Number(post.id)) : -1;
+    if (p !== -1) {
+      let newPostsData = [...props.postsData];
+      if (newPostsData[p].like_id) {
+        newPostsData[p].like_count -= 1;
+        newPostsData[p].like_id = null;
+      } else {
+        newPostsData[p].like_count += 1;
+        newPostsData[p].like_id = id;
+      }
+      props.setPostsData(newPostsData);  
+    }
+  };
+
   return (
     <div className="Container">
       <Header title="Post" />
-      {post ? <DetailedPostInfo data={post} /> : null}
+      {post ? <DetailedPostInfo data={post} likeCall={likeCall} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : <Loading />}
     </div>
   );
