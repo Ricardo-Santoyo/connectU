@@ -673,6 +673,10 @@ a {
   border-bottom: 1px solid #2f3336;
 }
 
+#flexDiv {
+  display: flex;
+}
+
 @media (max-width:750px) {
   #NavbarContainer {
     position: fixed;

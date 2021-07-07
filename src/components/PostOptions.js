@@ -29,7 +29,9 @@ function PostOptions(props) {
       <div className="ShowPostOptions">
         {props.data.commented ? <SolidCommentIcon className="Blue" /> : <CommentIcon className="HoverBlue"/>}
         <RetweetIcon className="HoverGreen"/>
-        {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
+        <div className="flexDiv" onClick={() => props.likeCall()}>
+          {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
+        </div>
       </div>  
     </div>
   );

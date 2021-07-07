@@ -23,10 +23,14 @@ function ShowComment(props) {
     .catch(error => error);
   }, [props.location.post, props.match.params.commentID]);
 
+  function likeCall() {
+    console.log("ok");
+  };
+
   return (
     <div className="Container">
-      <Header title="Post" />
-      {comment ? <DetailedPostInfo data={comment} /> : null}
+      <Header title="Comment" />
+      {comment ? <DetailedPostInfo data={comment} likeCall={likeCall} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : null}
     </div>
   );
