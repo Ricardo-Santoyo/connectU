@@ -10,7 +10,7 @@ function DetailedPostInfo(props) {
       <CreatorInfo data={props.data} />
       <p>{props.data.body}</p>
       <span className="PostCreatedAt">{timeDifference(props.data.created_at, true)}</span>
-      <PostOptions data={props.data} likeCall={props.likeCall} />
+      <PostOptions data={props.data} likeCall={props.likeCall} updateCommentInfo={props.updateCommentInfo}/>
     </div>
   );
 }

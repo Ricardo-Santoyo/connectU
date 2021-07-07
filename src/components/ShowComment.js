@@ -52,10 +52,18 @@ function ShowComment(props) {
     setComment(newCommentData);
   };
 
+  function updateCommentInfo(newComment) {
+    let newCommentData = {...comment};
+    newCommentData.comment_count += 1;
+    newCommentData.commented = true;
+    setComment(newCommentData);
+    setComments([newComment, ...comments]);
+  };
+
   return (
     <div className="Container">
       <Header title="Comment" />
-      {comment ? <DetailedPostInfo data={comment} likeCall={likeCall} /> : null}
+      {comment ? <DetailedPostInfo data={comment} likeCall={likeCall} updateCommentInfo={updateCommentInfo} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : null}
     </div>
   );
