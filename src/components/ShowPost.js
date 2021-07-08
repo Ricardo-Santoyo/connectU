@@ -69,10 +69,26 @@ function ShowPost(props) {
     }
   };
 
+  function updateCommentInfo(newComment) {
+    let newPostData = {...post};
+    newPostData.comment_count += 1;
+    newPostData.commented = true;
+    setPost(newPostData);
+    setComments([newComment, ...comments]);
+
+    let p = props.postsData ? props.postsData.findIndex((p) => p.id === Number(post.id)) : -1;
+    if (p !== -1) {
+      let newPostsData = [...props.postsData];
+      newPostsData[p].comment_count += 1;
+      newPostsData[p].commented = true;
+      props.setPostsData(newPostsData);  
+    }
+  };
+
   return (
     <div className="Container">
       <Header title="Post" />
-      {post ? <DetailedPostInfo data={post} likeCall={likeCall} /> : null}
+      {post ? <DetailedPostInfo data={post} likeCall={likeCall} updateCommentInfo={updateCommentInfo} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : <Loading />}
     </div>
   );
