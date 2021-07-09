@@ -14,12 +14,12 @@ function ShowComment(props) {
       const c = props.location.post;
       setComment(c);
     } else {
-      apiCall(`http://localhost:3001/api/comments/${props.match.params.commentID}`, 'GET')
+      apiCall(`http://localhost:3001/api/comments/${props.match.params.commentID}?user_id=${props.match.params.userHandle}`, 'GET')
       .then(data => setComment(data.data))
       .catch(error => error);
     }
 
-    apiCall(`http://localhost:3001/api/comments?comment_id=${props.match.params.commentID}`, 'GET')
+    apiCall(`http://localhost:3001/api/comments?comment_id=${props.match.params.commentID}&user_id=${props.match.params.userHandle}`, 'GET')
     .then(data => setComments(data.data))
     .catch(error => error);
   }, [props.location.post, props.match.params.commentID]);

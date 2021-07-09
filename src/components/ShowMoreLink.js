@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function ShowMoreLink(props) {
   const newTo = { 
-    pathname: `/${props.data.user_handle}/${props.type}/${props.data.id}`, 
+    pathname: `/${props.data.user_handle}/${props.type}/${props.data.user_post_id}`, 
     post: props.data
   };
 
