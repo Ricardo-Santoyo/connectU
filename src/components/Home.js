@@ -9,7 +9,7 @@ function Home(props) {
 
   useEffect(() => {
     if (!props.postsData) {
-      getHomeFeed(props.userID)
+      getHomeFeed(props.userID, true)
       .then(data => props.setPostsData(data))
     }
   })

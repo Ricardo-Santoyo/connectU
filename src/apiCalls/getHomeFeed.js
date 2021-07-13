@@ -1,20 +1,18 @@
 import apiCall from './apiCall';
 
-async function getHomeFeed(userID) {
-  return Promise.all([getPosts(userID), getReposts()])
+async function getHomeFeed(userID, include_followees) {
+  return Promise.all([getPosts(userID, include_followees), getReposts(userID, include_followees)])
   .then(([Posts, Reposts]) => fixPostsData(Posts, Reposts))
 };
 
-async function getPosts(userID) {
-  return apiCall(`http://localhost:3001/api/users/${userID}/posts?include_followees=true`, 'GET')
+async function getPosts(userID, include_followees) {
+  return apiCall(`http://localhost:3001/api/users/${userID}/posts${include_followees ? '?include_followees=true' : ''}`, 'GET')
   .then(data => data.data)
-  .catch()
 };
 
-async function getReposts() {
-  return apiCall(`http://localhost:3001/api/reposts?include_followees=true`, 'GET')
+async function getReposts(userID, include_followees) {
+  return apiCall(`http://localhost:3001/api/reposts?${include_followees ? 'include_followees=true' : `user_id=${userID}`}`, 'GET')
   .then(data => fixRepostData(data))
-  .catch()
 };
 
 function fixRepostData(data) {

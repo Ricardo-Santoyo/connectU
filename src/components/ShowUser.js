@@ -4,6 +4,7 @@ import Header from './Header';
 import PostsContainer from './PostsContainer';
 import defaultIcon from '../images/default-user-icon.jpg';
 import apiCall from '../apiCalls/apiCall';
+import getHomeFeed from '../apiCalls/getHomeFeed';
 import timeDifference from '../helperFunctions/timeDifference';
 import Loading from './Loading';
 
@@ -19,9 +20,8 @@ function ShowUser(props) {
     .then(data => setUser(data.data))
     .catch(error => error);
 
-    apiCall(`http://localhost:3001/api/users/${ID}/posts`, 'GET')
-    .then(data => setUserPosts(data.data))
-    .catch(error => error);
+    getHomeFeed(ID, false)
+    .then(data => setUserPosts(data))
   }, [props.userID, props.match.params.userHandle]);
 
   function JoinedDate() {
