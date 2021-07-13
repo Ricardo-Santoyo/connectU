@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import apiCall from '../apiCalls/apiCall';
+import getHomeFeed from '../apiCalls/getHomeFeed';
 import NewPost from './NewPost';
 import Loading from './Loading';
 import PostsContainer from './PostsContainer';
@@ -9,9 +9,8 @@ function Home(props) {
 
   useEffect(() => {
     if (!props.postsData) {
-      apiCall(`http://localhost:3001/api/users/${props.userID}/posts?include_followees=true`, 'GET')
-      .then(data => props.setPostsData(data.data))
-      .catch()
+      getHomeFeed(props.userID)
+      .then(data => props.setPostsData(data))
     }
   })
 

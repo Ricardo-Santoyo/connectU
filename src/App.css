@@ -237,9 +237,6 @@ a {
 #Post {
   display: flex;
   align-items: flex-start;
-  border: 1px solid #2f3336;
-  border-bottom: 0px;
-  padding: 10px;
 }
 
 .PostUserIcon {
@@ -675,6 +672,31 @@ a {
 
 #flexDiv {
   display: flex;
+}
+
+.RepostUser {
+  color: #6e767d;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+.RepostUser svg {
+  height: 16px;
+  margin-right: 10px;
+}
+
+.RepostUser span:hover {
+  text-decoration: underline;
+}
+
+.Border {
+  border: 1px solid #2f3336;
+  border-bottom: 0px;
+  padding: 10px;
 }
 
 @media (max-width:750px) {

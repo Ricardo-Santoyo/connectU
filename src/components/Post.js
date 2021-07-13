@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import apiCall from '../apiCalls/apiCall';
 import PostInfo from './PostInfo';
+import RepostUser from './RepostUser';
 
 function Post(props) {
   const [callingApi, setCallingApi] = useState(false);
@@ -22,7 +23,10 @@ function Post(props) {
   };
 
   return (
-    <PostInfo data={props.post} type="post" likeCall={likeCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}} />
+    <div className="Border">
+      {props.post.repost_user_name ? <RepostUser data={props.post}/> : null}
+      <PostInfo data={props.post} type="post" likeCall={likeCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}} />
+    </div>
   );
 }
 
