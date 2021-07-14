@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PostInfo from './PostInfo';
+import RepostUser from './RepostUser';
 import apiCall from '../apiCalls/apiCall';
 
 function Comment(props) {
@@ -23,6 +24,7 @@ function Comment(props) {
 
   return (
     <div className="Border">
+      {props.comment.repost_user_name ? <RepostUser data={props.comment}/> : null}
       <PostInfo data={props.comment} type="comment" likeCall={likeCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}}/>
     </div>
   );

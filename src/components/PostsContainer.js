@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from './Post';
+import Comment from './Comment';
 
 function PostsContainer(props) {
 
@@ -45,7 +46,8 @@ function PostsContainer(props) {
   return (
     <div id="PostsContainer">
       {props.postsData ? props.postsData.map((post, id) => (
-        <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
+        post.commentable_type ? <Comment key={id} comment={post} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
+        : <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );
