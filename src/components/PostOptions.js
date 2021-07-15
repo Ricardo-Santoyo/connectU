@@ -18,7 +18,7 @@ function PostOptions(props) {
         </div>
 
         <div className="ShowPostStats">
-          <span>0</span>
+          <span>{props.data.repost_count}</span>
           <span>Retweets</span>
          </div>
 

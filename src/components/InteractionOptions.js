@@ -18,7 +18,7 @@ function InteractionOptions(props) {
 
       <div className="IconWithCount HoverGreen">
         <RetweetIcon className="RetweetIcon"/>
-        <span>0</span>
+        <span>{props.data.repost_count}</span>
       </div>
 
       <div className="IconWithCount HoverRed" onClick={() => props.likeCall()}>
