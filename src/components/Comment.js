@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PostInfo from './PostInfo';
 import RepostUser from './RepostUser';
-import likeCall from '../apiCalls/likeCall';
+import interactionOptionCall from '../apiCalls/interactionOptionCall';
 
 function Comment(props) {
   const [callingApi, setCallingApi] = useState(false);
@@ -9,16 +9,16 @@ function Comment(props) {
   function initiateLikeCall() {
     if (!callingApi) {
       setCallingApi(true);
-      likeCall(props.comment.like_id, props.updateLikeCount, 'comment', props.comment.id, props.id)
+      interactionOptionCall('like', props.comment.like_id, props.updateLikeCount, 'comment', props.comment.id, props.id)
       .then(() => setCallingApi(false))
     }
   };
 
   function repostCall() {
-    if (props.comment.repost_id) {
-      props.updateRepostCount(props.id);
-    } else {
-      props.updateRepostCount(props.id, 5);
+    if (!callingApi) {
+      setCallingApi(true);
+      interactionOptionCall('repost', props.comment.repost_id, props.updateRepostCount, 'comment', props.comment.id, props.id)
+      .then(() => setCallingApi(false))
     }
   };
 
