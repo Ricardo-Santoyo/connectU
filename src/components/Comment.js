@@ -14,10 +14,18 @@ function Comment(props) {
     }
   };
 
+  function repostCall() {
+    if (props.comment.repost_id) {
+      props.updateRepostCount(props.id);
+    } else {
+      props.updateRepostCount(props.id, 5);
+    }
+  };
+
   return (
     <div className="Border">
       {props.comment.repost_user_name ? <RepostUser data={props.comment}/> : null}
-      <PostInfo data={props.comment} type="comment" likeCall={initiateLikeCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}}/>
+      <PostInfo data={props.comment} type="comment" likeCall={initiateLikeCall} repostCall={repostCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}}/>
     </div>
   );
 }

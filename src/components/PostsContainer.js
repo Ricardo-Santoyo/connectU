@@ -43,11 +43,33 @@ function PostsContainer(props) {
     }
   };
 
+  function updateRepostCount(post_id, id, stop) {
+    let newPostsData = stop ? [...props.pData] : [...props.postsData];
+    if (newPostsData[post_id].repost_id) {
+      newPostsData[post_id].repost_count -= 1;
+      newPostsData[post_id].repost_id = null;
+    } else {
+      newPostsData[post_id].repost_count += 1;
+      newPostsData[post_id].repost_id = id;
+    }
+
+    if (stop) {
+      props.setPData(newPostsData);
+    } else {
+      props.setPostsData(newPostsData);
+
+      let p = props.pData ? props.pData.findIndex((post) => post.id === newPostsData[post_id].id) : -1;
+      if (p !== -1) {
+        updateRepostCount(p, id, true);
+      }
+    }
+  }
+
   return (
     <div id="PostsContainer">
       {props.postsData ? props.postsData.map((post, id) => (
-        post.commentable_type ? <Comment key={id} comment={post} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
-        : <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
+        post.commentable_type ? <Comment key={id} comment={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount}/>
+        : <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );

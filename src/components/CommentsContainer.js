@@ -23,10 +23,23 @@ function CommentsContainer(props) {
     props.setCommentsData(newCommentsData);
   };
 
+  function updateRepostCount(comment_id, id) {
+    let newCommentsData = [...props.commentsData];
+    if (newCommentsData[comment_id].repost_id) {
+      newCommentsData[comment_id].repost_count -= 1;
+      newCommentsData[comment_id].repost_id = null;
+    } else {
+      newCommentsData[comment_id].repost_count += 1;
+      newCommentsData[comment_id].repost_id = id;
+    }
+
+    props.setCommentsData(newCommentsData);
+  };
+
   return (
     <div id="CommentsContainer">
       {props.commentsData ? props.commentsData.map((comment, id) => (
-        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} updateCommentCount={updateCommentCount}/>
+        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );
