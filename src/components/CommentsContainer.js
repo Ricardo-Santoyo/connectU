@@ -3,14 +3,14 @@ import Comment from './Comment';
 
 function CommentsContainer(props) {
 
-  function updateLikeCount(comment_id, id) {
+  function updateLikeCount(comment_id, data) {
     let newCommentsData = [...props.commentsData];
     if (newCommentsData[comment_id].like_id) {
       newCommentsData[comment_id].like_count -= 1;
       newCommentsData[comment_id].like_id = null;
     } else {
       newCommentsData[comment_id].like_count += 1;
-      newCommentsData[comment_id].like_id = id;
+      newCommentsData[comment_id].like_id = data.data.id;
     }
 
     props.setCommentsData(newCommentsData);
@@ -23,14 +23,14 @@ function CommentsContainer(props) {
     props.setCommentsData(newCommentsData);
   };
 
-  function updateRepostCount(comment_id, id) {
+  function updateRepostCount(comment_id, data) {
     let newCommentsData = [...props.commentsData];
     if (newCommentsData[comment_id].repost_id) {
       newCommentsData[comment_id].repost_count -= 1;
       newCommentsData[comment_id].repost_id = null;
     } else {
       newCommentsData[comment_id].repost_count += 1;
-      newCommentsData[comment_id].repost_id = id;
+      newCommentsData[comment_id].repost_id = data.repost.id;
     }
 
     props.setCommentsData(newCommentsData);

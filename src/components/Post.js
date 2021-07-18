@@ -15,11 +15,7 @@ function Post(props) {
   };
 
   function repostCall() {
-    if (!callingApi) {
-      setCallingApi(true);
-      interactionOptionCall('repost', props.post.repost_id, props.updateRepostCount, 'post', props.post.id, props.id)
-      .then(() => setCallingApi(false))
-    }
+    interactionOptionCall('repost', props.post.repost_id, props.updateRepostCount, 'post', props.post.id, props.id)
   };
 
   return (
