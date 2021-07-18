@@ -1,5 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
+import fixRepostData from '../helperFunctions/fixRepostData';
+import removeRepost from '../helperFunctions/removeRepost';
 
 function CommentsContainer(props) {
 
@@ -28,10 +30,18 @@ function CommentsContainer(props) {
     if (newCommentsData[comment_id].repost_id) {
       newCommentsData[comment_id].repost_count -= 1;
       newCommentsData[comment_id].repost_id = null;
+      if (props.postsData) {
+        let newPostsData = [...props.postsData];
+        removeRepost(newPostsData, newCommentsData[comment_id].id);
+        props.setPostsData(newPostsData);
+      };
     } else {
       newCommentsData[comment_id].repost_count += 1;
       newCommentsData[comment_id].repost_id = data.repost.id;
-    }
+      if (props.postsData) {
+        props.setPostsData([fixRepostData(data), ...props.postsData]);
+      };
+    };
 
     props.setCommentsData(newCommentsData);
   };

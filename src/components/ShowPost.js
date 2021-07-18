@@ -89,7 +89,7 @@ function ShowPost(props) {
     <div className="Container">
       <Header title="Post" />
       {post ? <DetailedPostInfo data={post} likeCall={likeCall} updateCommentInfo={updateCommentInfo} /> : null}
-      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : <Loading />}
+      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} postsData={props.postsData} setPostsData={props.setPostsData}/> : <Loading />}
     </div>
   );
 }

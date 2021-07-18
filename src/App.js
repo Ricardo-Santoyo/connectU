@@ -139,6 +139,8 @@ function App() {
           isAuthenticated={isAuthenticated} 
           exact path="/:userHandle/comment/:commentID" 
           component={ShowComment}
+          postsData={postsData}
+          setPostsData={setPostsData}
           setRedirectLocation={setRedirectLocation}
           redirectLocation={redirectLocation}
         />

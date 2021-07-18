@@ -64,7 +64,7 @@ function ShowComment(props) {
     <div className="Container">
       <Header title="Comment" />
       {comment ? <DetailedPostInfo data={comment} likeCall={likeCall} updateCommentInfo={updateCommentInfo} /> : null}
-      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} /> : null}
+      {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} postsData={props.postsData} setPostsData={props.setPostsData}/> : null}
     </div>
   );
 }

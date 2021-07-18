@@ -47,21 +47,21 @@ function PostsContainer(props) {
 
   function updateRepostCount(post_id, data, stop) {
     let newPostsData = stop ? [...props.pData] : [...props.postsData];
+    let newID;
     if (newPostsData[post_id].repost_id) {
-      post_id = removeRepost(newPostsData, newPostsData[post_id].id);
+      newID = removeRepost(newPostsData, newPostsData[post_id].id);
     } else {
       newPostsData[post_id].repost_count += 1;
       newPostsData[post_id].repost_id = data.repost.id;
       newPostsData = [fixRepostData(data), ...newPostsData];
-      post_id += 1;
+      newID = newPostsData[post_id + 1].id;
     }
 
     if (stop) {
       props.setPData(newPostsData);
     } else {
       props.setPostsData(newPostsData);
-
-      let p = props.pData ? props.pData.findIndex((post) => post.id === newPostsData[post_id].id) : -1;
+      let p = props.pData ? props.pData.findIndex((post) => post.id === newID) : -1;
       if (p !== -1) {
         updateRepostCount(p, data, true);
       }
