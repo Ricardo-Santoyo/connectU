@@ -14,6 +14,7 @@ import ShowComment from './components/ShowComment';
 import ShowUser from './components/ShowUser';
 import Explore from './components/Explore';
 import Bookmarks from './components/Bookmarks';
+import Notifications from './components/Notifications';
 import apiCall from './apiCalls/apiCall';
 import jwt_decode from "jwt-decode";
 
@@ -128,7 +129,15 @@ function App() {
 
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
-          path="/bookmarks" 
+          path="/notifications" 
+          component={Notifications}
+          setRedirectLocation={setRedirectLocation}
+          redirectLocation={redirectLocation}
+        />
+
+        <PrivateRoute 
+          isAuthenticated={isAuthenticated} 
+          exact path="/bookmarks" 
           component={Bookmarks}
           postsData={postsData}
           setPostsData={setPostsData}

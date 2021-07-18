@@ -699,6 +699,22 @@ a {
   padding: 10px;
 }
 
+#Notifications {
+  border: 1px solid #2f3336;
+}
+
+#Notifications .header {
+  border: 0;
+}
+
+#NoNotifications {
+  color: #6e767d;
+  text-align: center;
+  border-top: 1px solid #2f3336;
+  margin: 0;
+  padding: 20px;
+}
+
 @media (max-width:750px) {
   #NavbarContainer {
     position: fixed;
