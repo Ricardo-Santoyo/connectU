@@ -4,6 +4,7 @@ import { ReactComponent as SolidCommentIcon } from '../icons/comment-solid.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
+import { ReactComponent as ShareIcon } from '../icons/share-solid.svg';
 import NewComment from './NewComment';
 
 function InteractionOptions(props) {
@@ -24,6 +25,10 @@ function InteractionOptions(props) {
       <div className="IconWithCount HoverRed" onClick={() => props.likeCall()}>
         {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon />}
         <span>{props.data.like_count}</span>
+      </div>
+
+      <div className="IconWithCount HoverBlue" onClick={() => console.log("ok")}>
+        <ShareIcon className="share"/>
       </div>
 
       {displayNewComment ? <NewComment setDisplayNewComment={setDisplayNewComment} updateCommentInfo={props.updateCommentInfo} post={props.data}/> : null}

@@ -287,9 +287,10 @@ a {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
-  max-width: 80%;
+  max-width: 425px;
   color: #6e767d;
   font-size: 16px;
+  padding-right: 6px;
 }
 
 .InteractionOptions svg {
@@ -713,6 +714,10 @@ a {
   border-top: 1px solid #2f3336;
   margin: 0;
   padding: 20px;
+}
+
+.share {
+  height: 16px;
 }
 
 @media (max-width:750px) {
