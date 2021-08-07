@@ -6,9 +6,11 @@ import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import { ReactComponent as ShareIcon } from '../icons/share-solid.svg';
 import NewComment from './NewComment';
+import ShareMenu from './ShareMenu';
 
 function InteractionOptions(props) {
   const [displayNewComment, setDisplayNewComment] = useState(false);
+  const [displayShareMenu, setDisplayShareMenu] = useState(false);
 
   return (
     <div className="InteractionOptions">
@@ -27,11 +29,12 @@ function InteractionOptions(props) {
         <span>{props.data.like_count}</span>
       </div>
 
-      <div className="IconWithCount HoverBlue" onClick={() => console.log("ok")}>
+      <div className="IconWithCount HoverBlue" onClick={() =>  setDisplayShareMenu(true)}>
         <ShareIcon className="share"/>
       </div>
 
       {displayNewComment ? <NewComment setDisplayNewComment={setDisplayNewComment} updateCommentInfo={props.updateCommentInfo} post={props.data}/> : null}
+      {displayShareMenu ? <ShareMenu setDisplayShareMenu={setDisplayShareMenu}/> : null}
     </div>
   );
 }
