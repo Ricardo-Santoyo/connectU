@@ -19,7 +19,7 @@ function ShareMenu(props) {
           <span>Add to Bookmarks</span>
         </div>
 
-        <div className="ShareOption" onClick={() => console.log("link")}>
+        <div className="ShareOption" onClick={() => props.copyLink()}>
           <LinkIcon />
           <span>Copy Link</span>
         </div>
