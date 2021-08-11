@@ -68,11 +68,31 @@ function PostsContainer(props) {
     }
   }
 
+  function updateBookmark(post_id, data, stop) {
+    let newPostsData = stop ? [...props.pData] : [...props.postsData];
+    if (newPostsData[post_id].bookmark_id) {
+      newPostsData[post_id].bookmark_id = null;
+    } else {
+      newPostsData[post_id].bookmark_id = data.bookmark.id;
+    }
+
+    if (stop) {
+      props.setPData(newPostsData);
+    } else {
+      props.setPostsData(newPostsData);
+
+      let p = props.pData ? props.pData.findIndex((post) => post.id === newPostsData[post_id].id) : -1;
+      if (p !== -1) {
+        updateBookmark(p, data, true);
+      }
+    }
+  };
+
   return (
     <div id="PostsContainer">
       {props.postsData ? props.postsData.map((post, id) => (
-        post.commentable_type ? <Comment key={id} comment={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount}/>
-        : <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount}/>
+        post.commentable_type ? <Comment key={id} comment={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount} updateBookmark={updateBookmark}/>
+        : <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount} updateBookmark={updateBookmark}/>
       )) : null}
     </div>
   );

@@ -13,7 +13,7 @@ function PostInfo(props) {
       <div className="PostContent">
         <CreatorLink data={props.data}/>
         <ShowMoreLink data={props.data} type={props.type} />
-        <InteractionOptions data={props.data} likeCall={props.likeCall} repostCall={props.repostCall} updateCommentInfo={props.updateCommentInfo} type={props.type} />
+        <InteractionOptions data={props.data} likeCall={props.likeCall} repostCall={props.repostCall} bookmarkCall={props.bookmarkCall} updateCommentInfo={props.updateCommentInfo} type={props.type} />
       </div>
     </div>
   );

@@ -46,10 +46,21 @@ function CommentsContainer(props) {
     props.setCommentsData(newCommentsData);
   };
 
+  function updateBookmark(comment_id, data) {
+    let newCommentsData = [...props.commentsData];
+    if (newCommentsData[comment_id].bookmark_id) {
+      newCommentsData[comment_id].bookmark_id = null;
+    } else {
+      newCommentsData[comment_id].bookmark_id = data.bookmark.id;
+    }
+
+    props.setCommentsData(newCommentsData);
+  };
+
   return (
     <div id="CommentsContainer">
       {props.commentsData ? props.commentsData.map((comment, id) => (
-        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount}/>
+        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateBookmark={updateBookmark} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );
