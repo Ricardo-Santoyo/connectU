@@ -1,5 +1,5 @@
 import React from 'react';
-import Comment from './Comment';
+import Post from './Post';
 import fixRepostData from '../helperFunctions/fixRepostData';
 import removeRepost from '../helperFunctions/removeRepost';
 
@@ -59,8 +59,8 @@ function CommentsContainer(props) {
 
   return (
     <div id="CommentsContainer">
-      {props.commentsData ? props.commentsData.map((comment, id) => (
-        <Comment key={id} comment={comment} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateBookmark={updateBookmark} updateCommentCount={updateCommentCount}/>
+      {props.commentsData ? props.commentsData.map((data, id) => (
+        <Post key={id} data={data} id={id} type='comment' updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateBookmark={updateBookmark} updateCommentCount={updateCommentCount}/>
       )) : null}
     </div>
   );

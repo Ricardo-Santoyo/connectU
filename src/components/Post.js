@@ -11,19 +11,19 @@ function Post(props) {
   function initiateLikeCall() {
     if (!callingApi) {
       setCallingApi(true);
-      interactionOptionCall('like', props.post.like_id, props.updateLikeCount, 'post', props.post.id, props.id)
+      interactionOptionCall('like', props.data.like_id, props.updateLikeCount, props.type, props.data.id, props.id)
       .then(() => setCallingApi(false))
     }
   };
 
   function repostCall() {
-    interactionOptionCall('repost', props.post.repost_id, props.updateRepostCount, 'post', props.post.id, props.id)
+    interactionOptionCall('repost', props.data.repost_id, props.updateRepostCount, props.type, props.data.id, props.id)
   };
 
   function bookmarkCall() {
-    interactionOptionCall('bookmark', props.post.bookmark_id, props.updateBookmark, 'post', props.post.id, props.id)
+    interactionOptionCall('bookmark', props.data.bookmark_id, props.updateBookmark, props.type, props.data.id, props.id)
     .then(() => {
-      if (props.post.bookmark_id) {
+      if (props.data.bookmark_id) {
         setMessage("Added to Bookmarks");
       } else {
         setMessage("Removed from Bookmarks");
@@ -33,8 +33,8 @@ function Post(props) {
 
   return (
     <div className="Border">
-      {props.post.repost_user_name ? <RepostUser data={props.post}/> : null}
-      <PostInfo data={props.post} type="post" likeCall={initiateLikeCall} repostCall={repostCall} bookmarkCall={bookmarkCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}} />
+      {props.data.repost_user_name ? <RepostUser data={props.data}/> : null}
+      <PostInfo data={props.data} type={props.type} likeCall={initiateLikeCall} repostCall={repostCall} bookmarkCall={bookmarkCall} updateCommentInfo={() => {props.updateCommentCount(props.id)}} />
       {message ? <SuccessMessage message={message} setMessage={setMessage} /> : null}
     </div>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import Post from './Post';
-import Comment from './Comment';
 import fixRepostData from '../helperFunctions/fixRepostData';
 import removeRepost from '../helperFunctions/removeRepost';
 
@@ -90,9 +89,9 @@ function PostsContainer(props) {
 
   return (
     <div id="PostsContainer">
-      {props.postsData ? props.postsData.map((post, id) => (
-        post.commentable_type ? <Comment key={id} comment={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount} updateBookmark={updateBookmark}/>
-        : <Post key={id} post={post} id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount} updateBookmark={updateBookmark}/>
+      {props.postsData ? props.postsData.map((data, id) => (
+        data.commentable_type ? <Post key={id} data={data} type='comment' id={id} updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount} updateBookmark={updateBookmark}/>
+        : <Post key={id} data={data} id={id} type='post' updateLikeCount={updateLikeCount} updateRepostCount={updateRepostCount} updateCommentCount={updateCommentCount} updateBookmark={updateBookmark}/>
       )) : null}
     </div>
   );
