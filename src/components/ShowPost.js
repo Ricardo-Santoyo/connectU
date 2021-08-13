@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import apiCall from '../apiCalls/apiCall';
+import interactionOptionCall from '../apiCalls/interactionOptionCall';
 import CommentsContainer from './CommentsContainer';
 import DetailedPostInfo from './DetailedPostInfo';
 import Loading from "./Loading";
@@ -31,28 +32,20 @@ function ShowPost(props) {
 
   function likeCall() {
     if (!callingApi) {
-      if (post.like_id) {
-        setCallingApi(true);
-        apiCall(`http://localhost:3001/api/likes/${post.like_id}`, 'DELETE')
-        .then(response => response.error ? null : updateLikeCount())
-        .then(() => setCallingApi(false))
-      } else {
-        setCallingApi(true);
-        apiCall(`http://localhost:3001/api/likes?type=post&likeable_id=${post.id}`, 'POST')
-        .then(response => response.error ? null : updateLikeCount(response.data.id))
-        .then(() => setCallingApi(false))
-      }
+      setCallingApi(true);
+      interactionOptionCall('like', post.like_id, updateLikeCount, 'post', post.id)
+      .then(() => setCallingApi(false))
     }
   };
 
-  function updateLikeCount(id) {
+  function updateLikeCount(empty, data) {
     let newPostData = {...post};
     if (newPostData.like_id) {
       newPostData.like_count -= 1;
       newPostData.like_id = null;
     } else {
       newPostData.like_count += 1;
-      newPostData.like_id = id;
+      newPostData.like_id = data.data.id;
     }
     setPost(newPostData);
 
@@ -64,7 +57,7 @@ function ShowPost(props) {
         newPostsData[p].like_id = null;
       } else {
         newPostsData[p].like_count += 1;
-        newPostsData[p].like_id = id;
+        newPostsData[p].like_id = data.data.id;
       }
       props.setPostsData(newPostsData);  
     }

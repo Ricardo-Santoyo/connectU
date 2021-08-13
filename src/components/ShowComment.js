@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import apiCall from '../apiCalls/apiCall';
+import interactionOptionCall from '../apiCalls/interactionOptionCall';
 import CommentsContainer from './CommentsContainer';
 import DetailedPostInfo from './DetailedPostInfo';
 
@@ -26,28 +27,20 @@ function ShowComment(props) {
 
   function likeCall() {
     if (!callingApi) {
-      if (comment.like_id) {
-        setCallingApi(true);
-        apiCall(`http://localhost:3001/api/likes/${comment.like_id}`, 'DELETE')
-        .then(response => response.error ? null : updateLikeCount())
-        .then(() => setCallingApi(false))
-      } else {
-        setCallingApi(true);
-        apiCall(`http://localhost:3001/api/likes?type=comment&likeable_id=${comment.id}`, 'POST')
-        .then(response => response.error ? null : updateLikeCount(response.data.id))
-        .then(() => setCallingApi(false))
-      }
+      setCallingApi(true);
+      interactionOptionCall('like', comment.like_id, updateLikeCount, 'comment', comment.id)
+      .then(() => setCallingApi(false))
     }
   };
 
-  function updateLikeCount(id) {
+  function updateLikeCount(empty, data) {
     let newCommentData = {...comment};
     if (newCommentData.like_id) {
       newCommentData.like_count -= 1;
       newCommentData.like_id = null;
     } else {
       newCommentData.like_count += 1;
-      newCommentData.like_id = id;
+      newCommentData.like_id = data.data.id;
     }
     setComment(newCommentData);
   };
