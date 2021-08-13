@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import interactionOptionCall from '../apiCalls/interactionOptionCall';
 import PostInfo from './PostInfo';
 import RepostUser from './RepostUser';
@@ -7,6 +7,12 @@ import SuccessMessage from './SuccessMessage';
 function Post(props) {
   const [callingApi, setCallingApi] = useState(false);
   const [message, setMessage] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      setCallingApi(null);
+    };
+  }, []);
 
   function initiateLikeCall() {
     if (!callingApi) {

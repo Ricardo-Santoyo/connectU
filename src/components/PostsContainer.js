@@ -48,12 +48,22 @@ function PostsContainer(props) {
     let newPostsData = stop ? [...props.pData] : [...props.postsData];
     let newID;
     if (newPostsData[post_id].repost_id) {
-      newID = removeRepost(newPostsData, newPostsData[post_id].id);
+      if (!stop && props.noRepost) {
+        newPostsData[post_id].repost_count -= 1;
+        newPostsData[post_id].repost_id = null;
+        newID = newPostsData[post_id].id;
+      } else {
+        newID = removeRepost(newPostsData, newPostsData[post_id].id);
+      }
     } else {
       newPostsData[post_id].repost_count += 1;
       newPostsData[post_id].repost_id = data.repost.id;
-      newPostsData = [fixRepostData(data), ...newPostsData];
-      newID = newPostsData[post_id + 1].id;
+      if (!stop && props.noRepost) {
+        newID = newPostsData[post_id].commentable_type ? 'comment' : newPostsData[post_id].id;
+      } else {
+        newPostsData = [fixRepostData(data), ...newPostsData];
+        newID = newPostsData[post_id + 1].id;
+      }
     }
 
     if (stop) {
@@ -63,6 +73,8 @@ function PostsContainer(props) {
       let p = props.pData ? props.pData.findIndex((post) => post.id === newID) : -1;
       if (p !== -1) {
         updateRepostCount(p, data, true);
+      } else if (newID === 'comment') {
+        props.setPData([fixRepostData(data), ...props.pData]);
       }
     }
   }
