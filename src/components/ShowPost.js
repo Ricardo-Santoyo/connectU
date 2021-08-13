@@ -4,6 +4,7 @@ import apiCall from '../apiCalls/apiCall';
 import CommentsContainer from './CommentsContainer';
 import DetailedPostInfo from './DetailedPostInfo';
 import Loading from "./Loading";
+import findPost from '../helperFunctions/findPost';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
@@ -15,7 +16,7 @@ function ShowPost(props) {
       const p = props.location.post;
       setPost(p);
     } else if (props.postsData) {
-      const p = props.postsData.find((post) => post.id === Number(props.match.params.postID));
+      const p = findPost(props.postsData, props.match.params);
       setPost(p);
     } else {
       apiCall(`http://localhost:3001/api/users/${props.match.params.userHandle}/posts/${props.match.params.postID}`, 'GET')
