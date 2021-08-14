@@ -5,6 +5,7 @@ import interactionOptionCall from '../apiCalls/interactionOptionCall';
 import CommentsContainer from './CommentsContainer';
 import DetailedPostInfo from './DetailedPostInfo';
 import updatePostLikes from '../helperFunctions/updatePostLikes';
+import updatePostComments from '../helperFunctions/updatePostComments';
 
 function ShowComment(props) {
   const [comment, setComment] = useState();
@@ -24,7 +25,7 @@ function ShowComment(props) {
     apiCall(`http://localhost:3001/api/comments?comment_id=${props.match.params.commentID}&user_id=${props.match.params.userHandle}`, 'GET')
     .then(data => setComments(data.data))
     .catch(error => error);
-  }, []);
+  }, [props.location.post]);
 
   function likeCall() {
     if (!callingApi) {
@@ -43,10 +44,11 @@ function ShowComment(props) {
   };
 
   function updateCommentInfo(newComment) {
-    let newCommentData = {...comment};
-    newCommentData.comment_count += 1;
-    newCommentData.commented = true;
-    setComment(newCommentData);
+    let updatedData = updatePostComments(comment, props.postsData);
+    setComment(updatedData[0]);
+    if (updatedData[1]) {
+      props.setPostsData(updatedData[1]);
+    }
     setComments([newComment, ...comments]);
   };
 
