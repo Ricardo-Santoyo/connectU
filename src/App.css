@@ -434,8 +434,21 @@ a {
   border-top: 1px solid #2f3336;
 }
 
+.flexwrap {
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-top: 0;
+}
+
+.flexwrap .ShowPostStats {
+  padding-top: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .ShowPostOptions svg {
   width: 1em;
+  height: 1em;
   cursor: pointer;
   transition: color 0.2s linear;
 }

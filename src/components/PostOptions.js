@@ -4,6 +4,7 @@ import { ReactComponent as SolidCommentIcon } from '../icons/comment-solid.svg';
 import { ReactComponent as RetweetIcon } from '../icons/retweet.svg';
 import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
+import { ReactComponent as ShareIcon } from '../icons/share-solid.svg';
 import NewComment from './NewComment';
 
 function PostOptions(props) {
@@ -11,7 +12,7 @@ function PostOptions(props) {
 
   return (
     <div>
-      <div className="ShowPostOptions">
+      <div className="ShowPostOptions flexwrap">
         <div className="ShowPostStats">
           <span>{props.data.comment_count}</span>
           <span>Comments</span>
@@ -37,6 +38,9 @@ function PostOptions(props) {
         </div>
         <div className="flexDiv" onClick={() => props.likeCall()}>
           {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
+        </div>
+        <div className="flexDiv" onClick={() => console.log("ok")}>
+          <ShareIcon className="HoverBlue"/>
         </div>
       </div>  
 
