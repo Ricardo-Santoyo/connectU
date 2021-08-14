@@ -10,7 +10,6 @@ import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
-import ShowComment from './components/ShowComment';
 import ShowUser from './components/ShowUser';
 import Explore from './components/Explore';
 import Bookmarks from './components/Bookmarks';
@@ -160,7 +159,7 @@ function App() {
         <PrivateRoute 
           isAuthenticated={isAuthenticated} 
           exact path="/:userHandle/comment/:commentID" 
-          component={ShowComment}
+          component={ShowPost}
           postsData={postsData}
           setPostsData={setPostsData}
           setRedirectLocation={setRedirectLocation}
