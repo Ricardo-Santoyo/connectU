@@ -113,6 +113,8 @@ function App() {
           isAuthenticated={isAuthenticated} 
           exact path="/profile" 
           component={ShowUser}
+          postsData={postsData} 
+          setPostsData={setPostsData} 
           userID={userID}
           currentUserID={userID} 
           setRedirectLocation={setRedirectLocation}

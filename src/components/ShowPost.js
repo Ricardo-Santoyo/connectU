@@ -6,6 +6,7 @@ import CommentsContainer from './CommentsContainer';
 import DetailedPostInfo from './DetailedPostInfo';
 import Loading from "./Loading";
 import findPost from '../helperFunctions/findPost';
+import updatePostLikes from '../helperFunctions/updatePostLikes';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
@@ -28,7 +29,7 @@ function ShowPost(props) {
     apiCall(`http://localhost:3001/api/comments?post_id=${props.match.params.postID}&user_id=${props.match.params.userHandle}`, 'GET')
     .then(data => setComments(data.data))
     .catch(error => error);
-  }, [props.location.post, props.postsData, props.match.params.postID, props.match.params.userHandle]);
+  }, []);
 
   function likeCall() {
     if (!callingApi) {
@@ -39,27 +40,10 @@ function ShowPost(props) {
   };
 
   function updateLikeCount(empty, data) {
-    let newPostData = {...post};
-    if (newPostData.like_id) {
-      newPostData.like_count -= 1;
-      newPostData.like_id = null;
-    } else {
-      newPostData.like_count += 1;
-      newPostData.like_id = data.data.id;
-    }
-    setPost(newPostData);
-
-    let p = props.postsData ? props.postsData.findIndex((p) => p.id === Number(post.id)) : -1;
-    if (p !== -1) {
-      let newPostsData = [...props.postsData];
-      if (newPostsData[p].like_id) {
-        newPostsData[p].like_count -= 1;
-        newPostsData[p].like_id = null;
-      } else {
-        newPostsData[p].like_count += 1;
-        newPostsData[p].like_id = data.data.id;
-      }
-      props.setPostsData(newPostsData);  
+    let updatedData = updatePostLikes(post, data, props.postsData);
+    setPost(updatedData[0]);
+    if (updatedData[1]) {
+      props.setPostsData(updatedData[1]);
     }
   };
 
