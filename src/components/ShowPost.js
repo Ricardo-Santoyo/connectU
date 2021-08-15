@@ -51,13 +51,17 @@ function ShowPost(props) {
     interactionOptionCall('bookmark', post.bookmark_id, updateBookmarks, type, post.id)
   };
 
+  function updateState(data) {
+    setPost(data[0]);
+    if (data[1]) {
+      props.setPostsData(data[1]);
+    }
+  };
+
   function updateBookmarks(empty, data) {
     let updatedData = updatePostBookmark(post, data, props.postsData);
-    setPost(updatedData[0]);
-    if (updatedData[1]) {
-      props.setPostsData(updatedData[1]);
-    }
-    
+    updateState(updatedData);
+
     if (updatedData[0].bookmark_id) {
       setMessage("Added to Bookmarks");
     } else {
@@ -66,19 +70,11 @@ function ShowPost(props) {
   };
 
   function updateLikeCount(empty, data) {
-    let updatedData = updatePostLikes(post, data, props.postsData);
-    setPost(updatedData[0]);
-    if (updatedData[1]) {
-      props.setPostsData(updatedData[1]);
-    }
+    updateState(updatePostLikes(post, data, props.postsData));
   };
 
   function updateCommentInfo(newComment) {
-    let updatedData = updatePostComments(post, props.postsData);
-    setPost(updatedData[0]);
-    if (updatedData[1]) {
-      props.setPostsData(updatedData[1]);
-    }
+    updateState(updatePostComments(post, props.postsData));
     setComments([newComment, ...comments]);
   };
 
