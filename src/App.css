@@ -468,6 +468,18 @@ a {
   text-decoration-line: underline;
 }
 
+.postOptionsShare {
+  position: relative;
+}
+
+.postOptionsShare #ShareMenuWrapper {
+  top: 0;
+}
+
+.postOptionsShare #ShareMenu {
+  right: 0;
+}
+
 #ShowPost h2 {
   font-size: 20px;
   margin: 0;

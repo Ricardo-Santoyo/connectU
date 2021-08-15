@@ -6,9 +6,24 @@ import { ReactComponent as HeartIcon } from '../icons/heart.svg';
 import { ReactComponent as SolidHeartIcon } from '../icons/heart-solid.svg';
 import { ReactComponent as ShareIcon } from '../icons/share-solid.svg';
 import NewComment from './NewComment';
+import ShareMenu from './ShareMenu';
+import SuccessMessage from './SuccessMessage';
 
 function PostOptions(props) {
   const [displayNewComment, setDisplayNewComment] = useState(false);
+  const [displayShareMenu, setDisplayShareMenu] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  function copyLink() {
+    const type = props.data.commentable_type ? 'comment' : 'post'
+    navigator.clipboard.writeText(`http://localhost:3000/${props.data.user_handle}/${type}/${props.data.user_post_id}`);
+    setDisplayShareMenu(false);
+    setMessage("Link Copied");
+  };
+
+  function bookmark() {
+    setDisplayShareMenu(false);
+  };
 
   return (
     <div>
@@ -39,12 +54,13 @@ function PostOptions(props) {
         <div className="flexDiv" onClick={() => props.likeCall()}>
           {props.data.like_id ? <SolidHeartIcon className="Red" /> : <HeartIcon className="HoverRed"/>}
         </div>
-        <div className="flexDiv" onClick={() => console.log("ok")}>
-          <ShareIcon className="HoverBlue"/>
+        <div className="flexDiv postOptionsShare">
+          <ShareIcon className="HoverBlue" onClick={() =>  setDisplayShareMenu(true)}/>
+          {displayShareMenu ? <ShareMenu setDisplayShareMenu={setDisplayShareMenu} copyLink={copyLink} bookmark={bookmark} bookmark_id={props.data.bookmark_id} /> : null}
         </div>
-      </div>  
-
+      </div>
       {displayNewComment ? <NewComment setDisplayNewComment={setDisplayNewComment} updateCommentInfo={props.updateCommentInfo} post={props.data} returnData={true}/> : null}
+      {message ? <SuccessMessage message={message} setMessage={setMessage} /> : null}
     </div>
   );
 }
