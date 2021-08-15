@@ -1,16 +1,7 @@
-function updatePostLikes(post, data, postsData) {
-  let newPostData = {...post};
-  let returnData = [];
-  updateCounter(newPostData, data);
-  returnData.push(newPostData);
+import dataArray from "./dataArray";
 
-  let i = postsData ? postsData.findIndex((p) => p.id === Number(post.id)) : -1;
-  if (i !== -1) {
-    let newPostsData = [...postsData];
-    updateCounter(newPostsData[i], data);
-    returnData.push(newPostsData);
-  }
-  return returnData;
+function updatePostLikes(post, data, postsData) {
+  return dataArray(post, updateCounter, data, postsData);
 };
 
 function updateCounter(post, data) {
