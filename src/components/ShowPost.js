@@ -7,6 +7,7 @@ import DetailedPostInfo from './DetailedPostInfo';
 import Loading from "./Loading";
 import updatePostLikes from '../helperFunctions/updatePostLikes';
 import updatePostComments from '../helperFunctions/updatePostComments';
+import updatePostBookmark from '../helperFunctions/updatePostBookmark';
 import SuccessMessage from './SuccessMessage';
 
 function ShowPost(props) {
@@ -48,17 +49,20 @@ function ShowPost(props) {
   function bookmarkCall() {
     const type = props.match.params.postID ? 'post' : 'comment';
     interactionOptionCall('bookmark', post.bookmark_id, updateBookmarks, type, post.id)
-    .then(() => {
-      if (post.bookmark_id) {
-        setMessage("Added to Bookmarks");
-      } else {
-        setMessage("Removed from Bookmarks");
-      }
-    });
   };
 
   function updateBookmarks(empty, data) {
-    console.log("ok");
+    let updatedData = updatePostBookmark(post, data, props.postsData);
+    setPost(updatedData[0]);
+    if (updatedData[1]) {
+      props.setPostsData(updatedData[1]);
+    }
+    
+    if (updatedData[0].bookmark_id) {
+      setMessage("Added to Bookmarks");
+    } else {
+      setMessage("Removed from Bookmarks");
+    }
   };
 
   function updateLikeCount(empty, data) {

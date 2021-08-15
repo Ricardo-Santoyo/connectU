@@ -8,7 +8,7 @@ function updateCounter(post, data) {
   if (post.bookmark_id) {
     post.bookmark_id = null;
   } else {
-    post.bookmark_id = data.data.id;
+    post.bookmark_id = data.bookmark.id;
   }
 };
 
