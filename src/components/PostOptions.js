@@ -23,6 +23,7 @@ function PostOptions(props) {
 
   function bookmark() {
     setDisplayShareMenu(false);
+    props.bookmarkCall();
   };
 
   return (

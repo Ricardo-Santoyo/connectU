@@ -7,11 +7,13 @@ import DetailedPostInfo from './DetailedPostInfo';
 import Loading from "./Loading";
 import updatePostLikes from '../helperFunctions/updatePostLikes';
 import updatePostComments from '../helperFunctions/updatePostComments';
+import SuccessMessage from './SuccessMessage';
 
 function ShowPost(props) {
   const [post, setPost] = useState();
   const [comments, setComments] = useState();
   const [callingApi, setCallingApi] = useState(false);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     if (props.location.post) {
@@ -43,6 +45,22 @@ function ShowPost(props) {
     }
   };
 
+  function bookmarkCall() {
+    const type = props.match.params.postID ? 'post' : 'comment';
+    interactionOptionCall('bookmark', post.bookmark_id, updateBookmarks, type, post.id)
+    .then(() => {
+      if (post.bookmark_id) {
+        setMessage("Added to Bookmarks");
+      } else {
+        setMessage("Removed from Bookmarks");
+      }
+    });
+  };
+
+  function updateBookmarks(empty, data) {
+    console.log("ok");
+  };
+
   function updateLikeCount(empty, data) {
     let updatedData = updatePostLikes(post, data, props.postsData);
     setPost(updatedData[0]);
@@ -63,8 +81,9 @@ function ShowPost(props) {
   return (
     <div className="Container">
       <Header title={props.match.params.postID ? "Post" : "Comment"} />
-      {post ? <DetailedPostInfo data={post} likeCall={likeCall} updateCommentInfo={updateCommentInfo} /> : null}
+      {post ? <DetailedPostInfo data={post} likeCall={likeCall} bookmarkCall={bookmarkCall} updateCommentInfo={updateCommentInfo} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} postsData={props.postsData} setPostsData={props.setPostsData}/> : <Loading />}
+      {message ? <SuccessMessage message={message} setMessage={setMessage} /> : null}
     </div>
   );
 }
