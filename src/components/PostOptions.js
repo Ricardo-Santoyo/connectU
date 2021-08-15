@@ -49,7 +49,7 @@ function PostOptions(props) {
         <div className="flexDiv" onClick={() => setDisplayNewComment(true)}>
           {props.data.commented ? <SolidCommentIcon className="Blue" /> : <CommentIcon className="HoverBlue"/>}
         </div>
-        <div className="flexDiv">
+        <div className="flexDiv" onClick={() => props.repostCall()}>
           <RetweetIcon className="HoverGreen" className={props.data.repost_id ? "Green" : null}/>
         </div>
         <div className="flexDiv" onClick={() => props.likeCall()}>

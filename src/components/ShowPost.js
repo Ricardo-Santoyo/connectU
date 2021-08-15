@@ -46,6 +46,11 @@ function ShowPost(props) {
     }
   };
 
+  function repostCall() {
+    const type = props.match.params.postID ? 'post' : 'comment';
+    interactionOptionCall('repost', post.repost_id, updateRepostCount, type, post.id)
+  };
+
   function bookmarkCall() {
     const type = props.match.params.postID ? 'post' : 'comment';
     interactionOptionCall('bookmark', post.bookmark_id, updateBookmarks, type, post.id)
@@ -56,6 +61,14 @@ function ShowPost(props) {
     if (data[1]) {
       props.setPostsData(data[1]);
     }
+  };
+
+  function updateLikeCount(empty, data) {
+    updateState(updatePostLikes(post, data, props.postsData));
+  };
+
+  function updateRepostCount() {
+    console.log("ok");
   };
 
   function updateBookmarks(empty, data) {
@@ -69,10 +82,6 @@ function ShowPost(props) {
     }
   };
 
-  function updateLikeCount(empty, data) {
-    updateState(updatePostLikes(post, data, props.postsData));
-  };
-
   function updateCommentInfo(newComment) {
     updateState(updatePostComments(post, props.postsData));
     setComments([newComment, ...comments]);
@@ -81,7 +90,7 @@ function ShowPost(props) {
   return (
     <div className="Container">
       <Header title={props.match.params.postID ? "Post" : "Comment"} />
-      {post ? <DetailedPostInfo data={post} likeCall={likeCall} bookmarkCall={bookmarkCall} updateCommentInfo={updateCommentInfo} /> : null}
+      {post ? <DetailedPostInfo data={post} likeCall={likeCall} repostCall={repostCall} bookmarkCall={bookmarkCall} updateCommentInfo={updateCommentInfo} /> : null}
       {comments ? <CommentsContainer commentsData={comments} setCommentsData={setComments} postsData={props.postsData} setPostsData={props.setPostsData}/> : <Loading />}
       {message ? <SuccessMessage message={message} setMessage={setMessage} /> : null}
     </div>
