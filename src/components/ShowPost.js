@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import updatePostLikes from '../helperFunctions/updatePostLikes';
 import updatePostComments from '../helperFunctions/updatePostComments';
 import updatePostBookmark from '../helperFunctions/updatePostBookmark';
+import updatePostReposts from '../helperFunctions/updatePostReposts';
 import SuccessMessage from './SuccessMessage';
 
 function ShowPost(props) {
@@ -67,8 +68,8 @@ function ShowPost(props) {
     updateState(updatePostLikes(post, data, props.postsData));
   };
 
-  function updateRepostCount() {
-    console.log("ok");
+  function updateRepostCount(empty, data) {
+    updateState(updatePostReposts(post, data, props.postsData));
   };
 
   function updateBookmarks(empty, data) {

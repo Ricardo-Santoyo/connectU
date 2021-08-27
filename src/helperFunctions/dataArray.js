@@ -8,7 +8,7 @@ function dataArray(post, counter, data, postsData, repost) {
   if (i !== -1) {
     let newPostsData = [...postsData];
     if (repost) {
-      newPostsData = counter(newPostsData, data, i);
+      counter(newPostsData[i], data, newPostsData);
     } else {
       counter(newPostsData[i], data);
     }

@@ -6,22 +6,18 @@ function updatePostReposts(post, data, postsData) {
   return dataArray(post, updateCounter, data, postsData, true);
 };
 
-function updateCounter(post, data, i) {
-  let postsData = i ? post : null;
-  post = i ? postsData[i] : post;
-
+function updateCounter(post, data, postsData) {
   if (post.repost_id) {
     post.repost_count -= 1;
     post.repost_id = null;
     if (postsData) {
-      removeRepost(postsData, i);
-      return postsData;
+      removeRepost(postsData, post.id)
     }
   } else {
     post.repost_count += 1;
     post.repost_id = data.repost.id;
     if (postsData) {
-      return [fixRepostData(data), ...postsData];
+      postsData.unshift(fixRepostData(data));
     }
   }
 };
